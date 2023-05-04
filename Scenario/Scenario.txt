@@ -1,1 +1,4 @@
-Scenario
+Scenario - Uriel
+External Collisions - Uriel
+Internal Collisions - Lara
+Points to win - 

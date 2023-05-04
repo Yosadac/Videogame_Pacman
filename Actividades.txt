@@ -1,0 +1,26 @@
+Actividades:
+
+- Animaciones 			-> Uriel	-> To Develop
+- Colisiones Externas 		-> Uriel 	-> Verified
+- Colisiones Internas 		-> Lara	 	-> To Develop
+- Colisiones entre Personajes	-> Lopez	-> To Develop
+- Ganar/Perder	 		-> Enrique	-> To Develop
+- Reinicio			->		-> To Realize
+- Mejorar movimiento		-> Uriel	-> To Develop
+- Ejecutable*			-> Eder		-> To Develop
+- Sincronización		-> Yosadac	-> To Develop
+- Menú				-> Balam	-> To Develop
+
+
+Lugar de trabajo:
+
+- Animaciones			-> Characters 
+- Colisiones Externas 		-> Scenario 	
+- Colisiones Internas 		-> Scenario	 	
+- Colisiones entre Personajes	-> Characters	
+- Ganar/Perder	 		-> Others	
+- Reinicio			-> Others		
+- Mejorar movimiento		-> Characters	
+- Ejecutable*			-> 		
+- Sincronización		-> Connection	
+- Menú				-> Menu
