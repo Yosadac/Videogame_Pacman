@@ -14,3 +14,8 @@ Animacion de Poder cuando va a terminar (power_out)
 Total de frames: 2
 Intervalo de timepo: 0.1s
 ======================================================
+
+⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍
+Tamaño de los Sprites del Fantasma: 800 x 800 px
+Tamaño del mapa: 1806 x 2000 px
+⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍⚍
