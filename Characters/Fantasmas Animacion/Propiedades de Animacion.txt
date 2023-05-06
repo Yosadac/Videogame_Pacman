@@ -1,0 +1,16 @@
+======================================================
+Animacion de Fantasma
+
+Total de Frames: 2
+Intervalo de tiempo: 0.2s
+======================================================
+Animacion de Poder de fantasma (power)
+
+Total de frames: 2
+Intervalo de timepo: 0.1s
+======================================================
+Animacion de Poder cuando va a terminar (power_out)
+
+Total de frames: 2
+Intervalo de timepo: 0.1s
+======================================================
