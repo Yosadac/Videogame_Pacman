@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <gif_lib.h>
+//#include <gif_lib.h>
 #include <vector>
 #include <iostream>
 
