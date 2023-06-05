@@ -1,0 +1,2 @@
+Compilar el juego:
+g++ main.cpp juego.cpp player1.cpp player2.cpp player3.cpp player4.cpp texturas.cpp score.cpp -o main -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network
