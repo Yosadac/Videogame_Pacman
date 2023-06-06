@@ -6,16 +6,16 @@
 juego::juego(int resolucion_x,int resolucion_y, string titulo){
 
 	fps=60;
-	mov=0;
-	mov_pac=0;
+	mov_wum=0;
+	mov_red=0;
 	iniciar=0;
 	ContextSettings settings;
-	settings.antialiasingLevel = 8;
+	settings.antialiasingLevel = 0;
 	ventana1 = new RenderWindow(VideoMode(resolucion_x,resolucion_y),titulo);
 	ventana1->setFramerateLimit(fps);
 
     	cargar_texturas();
-    	crear_colision_jugador();
+    	//crear_colision_jugador();
 	llenar_cords();
 	crear_colisiones();
 	crear_pastillas();
@@ -44,13 +44,16 @@ void juego::dibujar_pantalla()
         for (auto& past : spastillas) {
             ventana1->draw(past);
         }
-        animacion_red();
+        //Anim_pastillas();
+        /*animacion_red();
         animacion_blue();
         animacion_pink();
-        animacion_orange();
-        animacion_pacman();
+        animacion_orange();*/
+        //animacion_pacman();
+        animacion_redit();
+        animacion_wumpus();
         mostrar_score();
-        Puntos();
+        //Puntos();
         //animacion_pacman_muerte();
         //ventana1->draw(sred);
 
@@ -69,6 +72,24 @@ void juego::gameLoop(){
 	while(ventana1->isOpen()){		
 		procesar_eventos();
 		dibujar_pantalla();
+		for(auto& coli : colisiones){
+			redPosition=colision(sredit1,coli,redPosition);
+			redPosition=colision(sredit2,coli,redPosition);
+			redPosition=colision(sredit3,coli,redPosition);
+			redPosition=colision(sredit4,coli,redPosition);
+			wumPosition=colision(swumpus1,coli,wumPosition);
+			wumPosition=colision(swumpus2,coli,wumPosition);
+			wumPosition=colision(swumpus3,coli,wumPosition);
+			colplayer(sredit1,swumpus1);
+		}	
+		
+		Puntos(sredit1,1);
+		Puntos(sredit2,1);
+		Puntos(sredit3,1);
+		
+		Puntos(swumpus1,2);
+		Puntos(swumpus2,2);
+		Puntos(swumpus3,2);
 		
 		if(iniciar==0){
 			inicio.play();
@@ -111,7 +132,7 @@ void juego::crear_colisiones(){
 	
 	int col;
 	// Crear 30 colisiones aleatorias
-	for (int i = 0; i <= 8; i++)
+	for (int i = 0; i <= 9; i++)
     	{
         	// Crear un rectángulo con una posición y tamaño aleatorios
         	RectangleShape colision(Vector2f(tamano[i].first,tamano[i].second));
@@ -154,33 +175,10 @@ void juego::procesar_eventos(){
                 ventana1->close();
             }
         }
-        /*/ Mover personaje con las teclas de flecha
-        if (Keyboard::isKeyPressed(Keyboard::Left))
-        {
-            //spacman.move(-1, 0);
-            spritePosition.x -= 1;
-            mov=3;
-        }
-        else if (Keyboard::isKeyPressed(Keyboard::Right))
-        {
-            //spacman.move(1, 0);
-            spritePosition.x += 1;
-            mov=4;
-        }
-        else if (Keyboard::isKeyPressed(Keyboard::Up))
-        {
-            //spacman.move(0, -1);
-            spritePosition.y -= 1;
-            mov=1;
-        }
-        else if (Keyboard::isKeyPressed(Keyboard::Down))
-        {
-            //spacman.move(0, 1);
-            spritePosition.y += 1;
-            mov=2;
-        }*/
-        mov_player1();
-        mov_player2();
+
+        /*mov_player2();
         mov_player3();
-        mov_player4();
+        mov_player4();*/
+        mov_redit();
+        mov_wumpus();
 }

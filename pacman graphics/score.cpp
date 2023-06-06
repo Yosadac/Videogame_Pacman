@@ -11,12 +11,22 @@ void juego::mostrar_score(){
     }
 
     // Crear un objeto de texto
-    scoreString = "SCORE: " + std::to_string(score);
-    Text text(scoreString, font, 24);
+    scoreString_red = "SCORE: " + std::to_string(score_red);
+    Text text_red(scoreString_red, font, 24);
+    
+    ventana1 -> draw(demo_redit);
+    
+    // Crear un objeto de texto
+    scoreString_wum = "SCORE: " + std::to_string(score_wum);
+    Text text_wum(scoreString_wum, font, 24);
+    text_wum.setPosition(250, 0);
+    
+    ventana1 -> draw(demo_wumpus);
 
     
     
-    ventana1 -> draw(text);
+    ventana1 -> draw(text_red);
+    ventana1 -> draw(text_wum);
 
 
 }
@@ -27,23 +37,24 @@ void juego::crear_pastillas(){
     posicion_puntos();
 	
     for (int i = 0; i < 244; i++) {
-        Sprite sprite(pastilla);
-        sprite.setScale(0.008f,0.008f);
+        Sprite sprite(bola1);
+        sprite.setScale(0.2f,0.2f);
         sprite.setPosition(cords_pastillas[i].first,cords_pastillas[i].second);
         spastillas.push_back(sprite);
     }
 
 }
 
-void juego::Puntos(){
+void juego::Puntos(Sprite jugador,int flag){
 
 for (auto& past : spastillas) {
 
-	 if (spacar1.getGlobalBounds().intersects(past.getGlobalBounds()) || spacab1.getGlobalBounds().intersects(past.getGlobalBounds()) || spaci1.getGlobalBounds().intersects(past.getGlobalBounds()) ||spacd1.getGlobalBounds().intersects(past.getGlobalBounds()))
+	 if (jugador.getGlobalBounds().intersects(past.getGlobalBounds()))
         {
                 past.setPosition(2000, 2000);
                 sound.play();
-                score += 10;
+                if(flag==1){score_red += 10;}
+                else{score_wum += 10;}
         }
 
 
