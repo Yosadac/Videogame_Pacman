@@ -1,0 +1,10 @@
+Compilar el juego:
+g++ main.cpp -I/home/kali/Descargas/asio-1.28.0 juego.cpp player1.cpp -I/home/kali/Descargas/asio-1.28.0 player2.cpp player3.cpp player4.cpp texturas.cpp score.cpp -o main -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network
+
+sudo lsof -i :8080
+
+kill -9 PID
+
+g++ main.cpp -o main -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network
+
+g++ red.cpp -o red -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network
