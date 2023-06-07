@@ -1,0 +1,3 @@
+main: main.cpp juego.cpp juego.h player1.cpp player2.cpp colision_jugadores.cpp score.cpp texturas.cpp colplayer.cpp
+	g++ main.cpp juego.cpp juego.h player1.cpp player2.cpp colision_jugadores.cpp score.cpp texturas.cpp colplayer.cpp -o main -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
+
