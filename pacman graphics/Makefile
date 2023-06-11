@@ -1,3 +1,3 @@
-main: main.cpp menu3.cpp menu.h juego.cpp juego.h player1.cpp player2.cpp colision_jugadores.cpp score.cpp texturas.cpp colplayer.cpp
-	g++ main.cpp menu3.cpp menu.h juego.cpp juego.h player1.cpp player2.cpp colision_jugadores.cpp score.cpp texturas.cpp colplayer.cpp -o main -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
+main: main.cpp menu3.cpp menu.h juego.cpp juego.h player1.cpp player2.cpp player3.cpp player4.cpp colision_jugadores.cpp score.cpp texturas.cpp colplayer.cpp
+	g++ main.cpp menu3.cpp menu.h juego.cpp juego.h player1.cpp player2.cpp player3.cpp player4.cpp colision_jugadores.cpp score.cpp texturas.cpp colplayer.cpp -o main -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 

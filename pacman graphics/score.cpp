@@ -2,7 +2,7 @@
 
 void juego::mostrar_score(){
 
-    // Crear un objeto de texto
+    // Texto y vidas REDIT
     scoreString_red = "SCORE: " + std::to_string(score_red);
     Text text_red(scoreString_red, font, 24);
     if(redLife==3){
@@ -17,7 +17,7 @@ void juego::mostrar_score(){
 	else if(redLife==1){ventana1 -> draw(demo_redit1);}
 
     
-    // Crear un objeto de texto
+    // Texto y vidas WUMPUS
     scoreString_wum = "SCORE: " + std::to_string(score_wum);
     Text text_wum(scoreString_wum, font, 24);
     text_wum.setPosition(250, 0);
@@ -33,10 +33,45 @@ void juego::mostrar_score(){
 	}
 	else if(wumLife==1){ventana1 -> draw(demo_wumpus1);}
 
-    
+	// Texto y vidas TUX
+	scoreString_tux = "SCORE: " + std::to_string(score_tux);
+	Text text_tux(scoreString_tux, font, 24);
+	text_tux.setPosition(500, 0);
+
+	if(tuxLife==3){
+		ventana1 -> draw(demo_tux1);
+		ventana1 -> draw(demo_tux2);
+		ventana1 -> draw(demo_tux3);
+	}
+	else if(tuxLife==2){
+		ventana1 -> draw(demo_tux1);
+		ventana1 -> draw(demo_tux2);
+	}
+	else if (tuxLife==1){ventana1 -> draw(demo_tux1);}
+
+
+	// Texto y vidas ANDROID
+	scoreString_and = "SCORE: " + std::to_string(score_and);
+	Text text_android(scoreString_and, font, 24);
+	text_android.setPosition(750, 0);
+
+	if(andLife==3){
+		ventana1 -> draw(demo_android1);
+		ventana1 -> draw(demo_android2);
+		ventana1 -> draw(demo_android3);
+	}
+	else if(andLife==2){
+		ventana1 -> draw(demo_android1);
+		ventana1 -> draw(demo_android2);
+	}
+	else if(andLife==1){ventana1 -> draw(demo_android1);}
+
+
     
     ventana1 -> draw(text_red);
     ventana1 -> draw(text_wum);
+	ventana1 -> draw(text_tux);
+	ventana1 -> draw(text_android);
 
 
 }
@@ -64,7 +99,9 @@ for (auto& past : spastillas) {
                 past.setPosition(2000, 2000);
                 sound.play();
                 if(flag==1){score_red += 10;}
-                else{score_wum += 10;}
+                else if(flag==2){score_wum += 10;}
+				else if(flag==3){score_tux += 10;}
+				else if(flag==4){score_and += 10;}
         }
 
 

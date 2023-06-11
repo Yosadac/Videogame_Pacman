@@ -27,11 +27,18 @@ class juego{
 		void posicion_puntos();
 		void Anim_pastillas();
 		void colplayer(Sprite &x , Sprite &y, Vector2f &Position,int flag, int &lifes);
+		
 		void animacion_redit();
 		void mov_redit();
 		
 		void animacion_wumpus();
 		void mov_wumpus();
+
+		void animacion_tux();
+		void mov_tuxf();
+
+		void animacion_android();
+		void mov_android();
 
 		void Texto_time(string texto, int tam_x, int tam_y);
 
@@ -41,7 +48,7 @@ class juego{
 	private:
 	
 		RenderWindow * ventana1;
-		int fps,mov,iniciar,mov_red,mov_wum;
+		int fps,mov,iniciar,mov_red,mov_wum,mov_tux,mov_and;
 		
 		Font font;
 		Texture mapa,red,muerte;
@@ -52,17 +59,17 @@ class juego{
 		
 		Texture bola1;
 		
-		Texture redit1,redit2,redit3,redit4,wumpus1,wumpus2,wumpus3;
+		Texture redit1,redit2,redit3,redit4,wumpus1,wumpus2,wumpus3,tux1,tux2,tux3,tux4,android1,android2,android3,android4;
 		
-		Sprite sredit1,sredit2,sredit3,sredit4,swumpus1,swumpus2,swumpus3;
+		Sprite sredit1,sredit2,sredit3,sredit4,swumpus1,swumpus2,swumpus3,stux1,stux2,stux3,stux4,sandroid1,sandroid2,sandroid3,sandroid4;
 		
-		Sprite demo_redit1,demo_redit2, demo_redit3, demo_wumpus1, demo_wumpus2, demo_wumpus3;
+		Sprite demo_redit1,demo_redit2, demo_redit3, demo_wumpus1, demo_wumpus2, demo_wumpus3,demo_tux1,demo_tux2,demo_tux3,demo_tux4,demo_android1,demo_android2,demo_android3,demo_android4;
 		
 		vector<Sprite> spastillas;	
 		
 		Event event;
-		Vector2f redPosition,wumPosition,pinkPosition,orangePosition;
-		int spriteIndex,aviso_red,aviso_wum;
+		Vector2f redPosition,wumPosition,tuxPosition,andPosition;
+		int spriteIndex,aviso_red,aviso_wum,aviso_tux,aviso_android;
 		vector<RectangleShape> colisiones;
 		vector<pair<int,int>> tamano;
 		vector<pair<int,int>> cords;
@@ -70,18 +77,19 @@ class juego{
 		Clock clock;
 		//Text scoreText_red,scoreText_wam;
 		
-		std::string scoreString_red, scoreString_wum, TextTimeRed, TextTimeWum;
-		int score_red,score_wum;
+		std::string scoreString_red, scoreString_wum, scoreString_tux,scoreString_and, TextTimeRed, TextTimeWum, TextTimeTux, TextTimeAnd;
+		int score_red,score_wum,score_tux,score_and;
 		Sound sound,inicio,soundpowerup,soundpowerdown;
 		SoundBuffer buffer,bufferInicio,bufferpowerup,bufferpowerdown;
 		
 		
-		Time TiempoRed,TiempoWum;
-    	int secondsRed,secondsWum;
-    	Clock clockRed,clockWum;
+		Time TiempoRed,TiempoWum,TiempoTux,TiempoAnd;
+    	int secondsRed,secondsWum,secondsTux,secondsAnd;
+    	Clock clockRed,clockWum,clockTux,clockAnd;
 
 		int diferenciaRed,RedClock,LastScoreRed,LastScoreWum,diferenciaWum, WumClock,redLife,wumLife;
-		bool powerupred,powerupwum;
-		bool confirmationRed,confirmationWum;
+		int diferenciaTux,TuxClock,LastScoreTux,diferenciaAnd,AndClock,LastScoreAnd,tuxLife,andLife;
+		bool powerupred,powerupwum,poweruptux,powerupand;
+		bool confirmationRed,confirmationWum,confirmationTux,confirmationAnd;
 
 };

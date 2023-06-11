@@ -1,15 +1,17 @@
 #include "juego.h"
 
 void juego::cargar_texturas(){
-
-	Vector2f red(385,460),blue(415,460),pink(445,460),org(475,460),pac(430,535);
+//1 wum, 2 red, 3 tux, 4 and
+	Vector2f red(385,460),blue(415,460),pink(445,460),org(475,460);
 	redPosition=red;
 	wumPosition=blue;
-	pinkPosition=pink;
-	orangePosition=org;
+	tuxPosition=pink;
+	andPosition=org;
 	spriteIndex = 0;
 	score_red=0;
 	score_wum=0;
+	score_and=0;
+	score_tux=0;
 	
 	    // Cargar la fuente desde un archivo
     if (!font.loadFromFile("8-BIT WONDER.TTF")) {
@@ -50,7 +52,7 @@ void juego::cargar_texturas(){
     	smapa.setPosition(smapa.getPosition().x+100,smapa.getPosition().y+125);
     	
     	//Nuevos sprites===============================================================================
-    	
+    //REDIT================================================================================================	
     redit1.loadFromFile("nuevos_sprites/redditor/redditor1.png");
     redit2.loadFromFile("nuevos_sprites/redditor/redditor2.png");
     redit3.loadFromFile("nuevos_sprites/redditor/redditor3.png");
@@ -80,7 +82,7 @@ void juego::cargar_texturas(){
 	
 	//sredit.setScale(0.03f,0.03f);
     	
-    	
+	//WUMPUS================================================================================================
     	
     wumpus1.loadFromFile("nuevos_sprites/wumpus/wumpus1.png");
     wumpus2.loadFromFile("nuevos_sprites/wumpus/wumpus2.png");
@@ -101,6 +103,56 @@ void juego::cargar_texturas(){
 	swumpus1.setScale(0.8f,0.8f);
     swumpus2.setScale(0.8f,0.8f);
     swumpus3.setScale(0.8f,0.8f);
+
+	//TUX================================================================================================
+	
+	tux1.loadFromFile("nuevos_sprites/redditor/redditor1.png");
+	tux2.loadFromFile("nuevos_sprites/redditor/redditor2.png");
+	tux3.loadFromFile("nuevos_sprites/redditor/redditor3.png");
+	tux4.loadFromFile("nuevos_sprites/redditor/redditor4.png");
+
+	stux1.setTexture(tux1);
+	stux2.setTexture(tux2);
+	stux3.setTexture(tux3);
+	stux4.setTexture(tux4);
+
+	demo_tux1.setTexture(tux1);
+	demo_tux2.setTexture(tux1);
+	demo_tux3.setTexture(tux1);
+
+	demo_tux1.setPosition(550,50);
+	demo_tux2.setPosition(580,50);
+	demo_tux3.setPosition(610,50);
+
+	stux1.setScale(0.8f,0.8f);
+	stux2.setScale(0.8f,0.8f);
+	stux3.setScale(0.8f,0.8f);
+	stux4.setScale(0.8f,0.8f);
+
+	//ANDROID================================================================================================
+
+	android1.loadFromFile("nuevos_sprites/redditor/redditor1.png");
+	android2.loadFromFile("nuevos_sprites/redditor/redditor2.png");
+	android3.loadFromFile("nuevos_sprites/redditor/redditor3.png");
+	android4.loadFromFile("nuevos_sprites/redditor/redditor4.png");
+
+	sandroid1.setTexture(android1);
+	sandroid2.setTexture(android2);
+	sandroid3.setTexture(android3);
+	sandroid4.setTexture(android4);
+
+	demo_android1.setTexture(android1);
+	demo_android2.setTexture(android1);
+	demo_android3.setTexture(android1);
+
+	demo_android1.setPosition(800,50);
+	demo_android2.setPosition(830,50);
+	demo_android3.setPosition(860,50);
+
+	sandroid1.setScale(0.8f,0.8f);
+	sandroid2.setScale(0.8f,0.8f);
+	sandroid3.setScale(0.8f,0.8f);
+	sandroid4.setScale(0.8f,0.8f);
 
 }
 
