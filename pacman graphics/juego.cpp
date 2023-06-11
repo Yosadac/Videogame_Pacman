@@ -57,7 +57,7 @@ void juego::dibujar_pantalla()
 
 		if(redLife>0){
 			LastScoreRed=score_red-diferenciaRed;
-			if(LastScoreRed==100 && confirmationWum==false){
+			if(LastScoreRed==500 && confirmationWum==false){
 				powerupred=true;
 				confirmationRed=true;
 
@@ -67,7 +67,7 @@ void juego::dibujar_pantalla()
 
 		if(wumLife>0){
 			LastScoreWum=score_wum-diferenciaWum;
-			if(LastScoreWum==100 && confirmationRed==false){
+			if(LastScoreWum==500 && confirmationRed==false){
 				powerupwum=true;
 				confirmationWum=true;
 			}
