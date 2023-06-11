@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "juego.h"
 
 void mostrarMenu() {
 //int main() {
@@ -53,8 +54,9 @@ void mostrarMenu() {
                     if (selectedOption == 0)
                     {
                         // Lógica para la opción "Jugar"
-                        system("/home/kali/Desktop/nuevo2/./iniciar_juego.sh");
+                        //system("/home/kali/Desktop/nuevo2/./iniciar_juego.sh");
                         std::cout << "Iniciando juego..." << std::endl;
+                        window.close();
                     }
                     else if (selectedOption == 1)
                     {
@@ -104,6 +106,8 @@ void mostrarMenu() {
 
         window.display();
     }
+
+    //juego* partida1 = new juego(1000, 1000, "Bite The Bytes");
 
     //return 0;
 }

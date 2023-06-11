@@ -106,6 +106,25 @@ void juego::dibujar_pantalla()
 	ventana1->display();
 }
 
+void juego::procesar_eventos(){
+
+	while (ventana1->pollEvent(event))
+        {
+            if (event.type == Event::Closed)
+            {
+                ventana1->close();
+            }
+        }
+
+        /*mov_player2();
+        mov_player3();
+        mov_player4();*/
+        mov_redit();
+        mov_wumpus();
+		mov_tuxf();
+		mov_android();
+}
+
 
 
 
@@ -158,14 +177,14 @@ void juego::gameLoop(){
 
 
 		
-		/*if(iniciar==0){
+		if(iniciar==0){
 			inicio.play();
 			while (inicio.getStatus() == sf::SoundSource::Playing) {
 	    			// esperar un poco antes de volver a comprobar el estado
 			    	sleep(milliseconds(100));
 			    	iniciar=1;
 			}
-		}	*/
+		}
 		
 	}
 
@@ -229,30 +248,6 @@ void juego::crear_colisiones(){
    	}	
 }
 
-
-
-
-
-
-
-void juego::procesar_eventos(){
-
-	while (ventana1->pollEvent(event))
-        {
-            if (event.type == Event::Closed)
-            {
-                ventana1->close();
-            }
-        }
-
-        /*mov_player2();
-        mov_player3();
-        mov_player4();*/
-        mov_redit();
-        mov_wumpus();
-		mov_tuxf();
-		mov_android();
-}
 
 
 void juego::Texto_time(string texto, int tam_x, int tam_y){

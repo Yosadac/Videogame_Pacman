@@ -51,8 +51,8 @@ class juego{
 		int fps,mov,iniciar,mov_red,mov_wum,mov_tux,mov_and;
 		
 		Font font;
-		Texture mapa,red,muerte;
-		Sprite smapa,sred,smuerte;
+		Texture mapa;
+		Sprite smapa;
 		
 		Texture mpac1,mpac2,mpac3,mpac4,mpac5,mpac6,mpac7,mpac8,mpac9,mpac10,mpac11,mpac12,pastilla;
 		Sprite smpac1,smpac2,smpac3,smpac4,smpac5,smpac6,smpac7,smpac8,smpac9,smpac10,smpac11,smpac12;
