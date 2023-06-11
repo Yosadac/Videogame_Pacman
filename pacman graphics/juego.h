@@ -26,19 +26,24 @@ class juego{
 		void crear_pastillas();
 		void posicion_puntos();
 		void Anim_pastillas();
-		void colplayer(Sprite x , Sprite y);
+		void colplayer(Sprite &x , Sprite &y, Vector2f &Position,int flag, int &lifes);
 		void animacion_redit();
 		void mov_redit();
 		
 		void animacion_wumpus();
 		void mov_wumpus();
-		
+
+		void Texto_time(string texto, int tam_x, int tam_y);
+
+		void Power_up(int &LastScore,int &diferencia,int &clockInd,Clock &clocktime, Time &Tiempo,int &seconds, string &TextTime,bool &powerupplayer, int flag, int score, bool &confirmation);
 		
 		Vector2f colision(Sprite x, RectangleShape Obs1, Vector2f spritePosition);
 	private:
 	
 		RenderWindow * ventana1;
 		int fps,mov,iniciar,mov_red,mov_wum;
+		
+		Font font;
 		Texture mapa,red,muerte;
 		Sprite smapa,sred,smuerte;
 		
@@ -51,7 +56,7 @@ class juego{
 		
 		Sprite sredit1,sredit2,sredit3,sredit4,swumpus1,swumpus2,swumpus3;
 		
-		Sprite demo_redit, demo_wumpus;
+		Sprite demo_redit1,demo_redit2, demo_redit3, demo_wumpus1, demo_wumpus2, demo_wumpus3;
 		
 		vector<Sprite> spastillas;	
 		
@@ -65,9 +70,18 @@ class juego{
 		Clock clock;
 		//Text scoreText_red,scoreText_wam;
 		
-		std::string scoreString_red, scoreString_wum;
+		std::string scoreString_red, scoreString_wum, TextTimeRed, TextTimeWum;
 		int score_red,score_wum;
-		Sound sound,inicio;
-		SoundBuffer buffer,bufferInicio;
+		Sound sound,inicio,soundpowerup,soundpowerdown;
+		SoundBuffer buffer,bufferInicio,bufferpowerup,bufferpowerdown;
+		
+		
+		Time TiempoRed,TiempoWum;
+    	int secondsRed,secondsWum;
+    	Clock clockRed,clockWum;
+
+		int diferenciaRed,RedClock,LastScoreRed,LastScoreWum,diferenciaWum, WumClock,redLife,wumLife;
+		bool powerupred,powerupwum;
+		bool confirmationRed,confirmationWum;
 
 };

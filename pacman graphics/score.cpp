@@ -2,26 +2,36 @@
 
 void juego::mostrar_score(){
 
-    // Crear un objeto de fuente
-    Font font;
-
-    // Cargar la fuente desde un archivo
-    if (!font.loadFromFile("8-BIT WONDER.TTF")) {
-        cerr << "Error al cargar la fuente" << std::endl;
-    }
-
     // Crear un objeto de texto
     scoreString_red = "SCORE: " + std::to_string(score_red);
     Text text_red(scoreString_red, font, 24);
-    
-    ventana1 -> draw(demo_redit);
+    if(redLife==3){
+		ventana1 -> draw(demo_redit1);
+		ventana1 -> draw(demo_redit2);
+		ventana1 -> draw(demo_redit3);
+	}
+	else if(redLife==2){
+		ventana1 -> draw(demo_redit1);
+		ventana1 -> draw(demo_redit2);
+	}
+	else if(redLife==1){ventana1 -> draw(demo_redit1);}
+
     
     // Crear un objeto de texto
     scoreString_wum = "SCORE: " + std::to_string(score_wum);
     Text text_wum(scoreString_wum, font, 24);
     text_wum.setPosition(250, 0);
     
-    ventana1 -> draw(demo_wumpus);
+	if(wumLife==3){
+		ventana1 -> draw(demo_wumpus1);
+		ventana1 -> draw(demo_wumpus2);
+		ventana1 -> draw(demo_wumpus3);
+	}
+	else if(wumLife==2){
+		ventana1 -> draw(demo_wumpus1);
+		ventana1 -> draw(demo_wumpus2);
+	}
+	else if(wumLife==1){ventana1 -> draw(demo_wumpus1);}
 
     
     
