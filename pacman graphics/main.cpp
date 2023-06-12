@@ -60,7 +60,7 @@ int mostrarMenu(int vuelta) {
         while (window.pollEvent(event))
         {
             if(event.type == sf::Event::Closed){
-            	vuelta=0;
+                vuelta = 0;
                 window.close();
             }
             else if (event.type == sf::Event::KeyPressed)
@@ -80,6 +80,7 @@ int mostrarMenu(int vuelta) {
                         // Lógica para la opción "Jugar"
                         //system("/home/kali/Desktop/nuevo2/./iniciar_juego.sh");
                         std::cout << "Creando Partida..." << std::endl;
+                        hostIP();
                         window.close();
                     }
 

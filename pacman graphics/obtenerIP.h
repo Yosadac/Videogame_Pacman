@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include <SFML/Network.hpp>
 #include <vector>
 #include <iostream>
 
@@ -105,6 +106,52 @@ if (Keyboard::isKeyPressed(Keyboard::Num1))
 
 Text IP(ipAdres,font, 24);
 Text Mensaje("Ingrese la IP del Host:", font, 24);
+Mensaje.setPosition(100,100);
+
+//IP.setScale(4,4);
+IP.setPosition(250,170);
+        window.clear();
+
+        window.draw(Mensaje);
+        window.draw(IP);
+        window.display();
+        sf::sleep(sf::milliseconds(10));
+}
+
+}
+
+/*=======================================
+                Parte dos
+=======================================*/
+void hostIP(){
+char ip;
+string ipAdres;
+Font font;
+font.loadFromFile("consolas.TTF");
+RenderWindow window(VideoMode(600,300),"Ingresar IP");
+while(window.isOpen()){
+
+
+
+Event event;
+
+sf::sleep(sf::milliseconds(100));
+
+
+while (window.pollEvent(event))
+        {
+            if (event.type == Event::Closed)
+            {
+                window.close();
+            }
+        }
+        
+
+IpAddress ipAddress = sf::IpAddress::getLocalAddress();
+std::cout << "IP Address: " << ipAddress.toString() << std::endl;
+
+Text IP(ipAddress.toString(),font, 24);
+Text Mensaje("Tu IP es: ", font, 24);
 Mensaje.setPosition(100,100);
 
 //IP.setScale(4,4);
