@@ -14,13 +14,12 @@ string ipAdres;
 Font font;
 font.loadFromFile("consolas.TTF");
 RenderWindow window(VideoMode(600,300),"Ingresar IP");
+
+sf::sleep(sf::milliseconds(100));
 while(window.isOpen()){
-
-
 
 Event event;
 
-sf::sleep(sf::milliseconds(100));
 
 
 while (window.pollEvent(event))
@@ -115,7 +114,7 @@ IP.setPosition(250,170);
         window.draw(Mensaje);
         window.draw(IP);
         window.display();
-        sf::sleep(sf::milliseconds(10));
+        sf::sleep(sf::milliseconds(80));
 }
 
 }
