@@ -54,16 +54,18 @@ void mostrarMenu(int &vuelta) {
                 {
                     if (selectedOption == 0)
                     {
-                        // Lógica para la opción "Jugar"
+                        // Lógica para la opción "Crear Partida"
                         //system("/home/kali/Desktop/nuevo2/./iniciar_juego.sh");
-                        std::cout << "Iniciando juego..." << std::endl;
+                        std::cout << "Creando Partida" << std::endl;
                         window.close();
                     }
                     else if (selectedOption == 1)
                     {
-                        // Lógica para la opción "Opciones"
-                        std::cout << "Accediendo a las opciones..." << std::endl;
-                        
+                        // Lógica para la opción "Unirse a Partida"
+                        std::cout << "Accediendo a una partida..." << std::endl;
+                        // Simplemente mostrar el placeholder de la dirección IP
+                        std::cout << "Dirección IP: " << ipAddress << std::endl;
+                        // Lógica para la opción "Unirse a Partida"
                     }
                     else if (selectedOption == 2)
                     {

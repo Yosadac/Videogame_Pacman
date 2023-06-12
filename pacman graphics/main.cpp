@@ -1,5 +1,5 @@
 #include "juego.h"
-//#include "menu.h"
+#include "obtenerIP.h"
 
 
 
@@ -25,6 +25,8 @@ int main(int argc, char* args[]) {
 int mostrarMenu(int vuelta) {
 //int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Menú del Juego");
+    sf::Text texto;
+    std::string ipAddress;
 
     // Cargar la fuente
     sf::Font font;
@@ -38,10 +40,10 @@ int mostrarMenu(int vuelta) {
     titleText.setPosition(300.f, 100.f);
 
     // Crear los textos de las opciones del menú
-    sf::Text option1Text("Unirse a partida", font, 32);
+    sf::Text option1Text("Crear partida", font, 32);
     option1Text.setPosition(350.f, 250.f);
     
-    sf::Text option2Text("Crear partida", font, 32);
+    sf::Text option2Text("Unirse a partida", font, 32);
     option2Text.setPosition(350.f, 300.f);
 
     sf::Text option3Text("Salir", font, 32);
@@ -60,7 +62,7 @@ int mostrarMenu(int vuelta) {
             if(event.type == sf::Event::Closed){
             	vuelta=0;
                 window.close();
-               }
+            }
             else if (event.type == sf::Event::KeyPressed)
             {
                 if (event.key.code == sf::Keyboard::Up)
@@ -77,15 +79,18 @@ int mostrarMenu(int vuelta) {
                     {
                         // Lógica para la opción "Jugar"
                         //system("/home/kali/Desktop/nuevo2/./iniciar_juego.sh");
-                        std::cout << "Iniciando juego..." << std::endl;
+                        std::cout << "Creando Partida..." << std::endl;
                         window.close();
                     }
+
                     else if (selectedOption == 1)
                     {
-                        // Lógica para la opción "Opciones"
-                        std::cout << "Accediendo a las opciones..." << std::endl;
-                        
+                        // Lógica para la opción "Unirse a Partida"
+                        std::cout << "Accediendo a una partida..." << std::endl;
+                        obtenerIP(ipAddress);
+                        std::cout << "Dirección IP: " << ipAddress << std::endl;
                     }
+
                     else if (selectedOption == 2)
                     {
                         // Lógica para la opción "Salir"
