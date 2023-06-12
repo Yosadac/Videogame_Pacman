@@ -30,7 +30,6 @@ while (window.pollEvent(event))
         {
             if (event.type == Event::Closed)
             {
-            
                 window.close();
             }
         

@@ -3,7 +3,7 @@
 
 void juego::mov_android(){
     //Mover personaje con las teclas
-if (Keyboard::isKeyPressed(Keyboard::J))
+if (Keyboard::isKeyPressed(Keyboard::F))
         {
             if(aviso_android==1 && mov_and!=3){
             	mov_and=3;
@@ -14,7 +14,7 @@ if (Keyboard::isKeyPressed(Keyboard::J))
             	mov_and=3;
             }
         }
-        else if (Keyboard::isKeyPressed(Keyboard::L))
+        else if (Keyboard::isKeyPressed(Keyboard::H))
         {
 	    if(aviso_android==1 && mov_and!=4){	
             	mov_and=4;
@@ -25,7 +25,7 @@ if (Keyboard::isKeyPressed(Keyboard::J))
             	mov_and=4;
             }
         }
-        else if (Keyboard::isKeyPressed(Keyboard::I))
+        else if (Keyboard::isKeyPressed(Keyboard::T))
         {
 	    if(aviso_android==1 && mov_and!=1){
             	mov_and=1;
@@ -37,7 +37,7 @@ if (Keyboard::isKeyPressed(Keyboard::J))
             }
             //aviso=0;
         }
-        else if (Keyboard::isKeyPressed(Keyboard::K))
+        else if (Keyboard::isKeyPressed(Keyboard::G))
         {
             if(aviso_android==1 && mov_and!=2){
             	mov_and=2;

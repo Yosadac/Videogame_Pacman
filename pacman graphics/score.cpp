@@ -207,3 +207,27 @@ void juego::winner(){
 	}
 
 }
+
+
+void juego::animacion_virus(Vector2f &Position){
+	if (clock.getElapsedTime().asMilliseconds() > 80) {
+            spriteIndex = (spriteIndex + 1) % 4;
+            clock.restart();
+            }
+        	if (spriteIndex == 0){
+        	    svirus1.setPosition(Position);
+        	    ventana1->draw(svirus1);
+        	}
+        	else if(spriteIndex == 1){
+        	    svirus2.setPosition(Position);
+        	    ventana1->draw(svirus2);
+        	}
+        	else if(spriteIndex==2){
+        	    svirus3.setPosition(Position);
+        	    ventana1->draw(svirus3);
+        	}  
+        	else {
+        	    svirus4.setPosition(Position);
+        	    ventana1->draw(svirus4);
+        	}  
+}

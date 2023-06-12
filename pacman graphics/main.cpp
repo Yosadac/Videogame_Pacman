@@ -24,7 +24,7 @@ int main(int argc, char* args[]) {
 
 int mostrarMenu(int vuelta) {
 //int main() {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Menú del Juego");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Menu del Juego");
     sf::Text texto;
     std::string ipAddress;
 

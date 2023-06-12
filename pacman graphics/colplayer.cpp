@@ -41,10 +41,10 @@ void juego::Power_up(int &LastScore,int &diferencia,int &clockInd,Clock &clockti
 
 		if(seconds!=0){
   			TextTime="TIME:" + std::to_string(seconds);
-            if(flag==1){Texto_time(TextTime, 50, 100);animacion_redit();}
-            else if(flag==2){Texto_time(TextTime,300, 100);animacion_wumpus();}
-            else if(flag==3){Texto_time(TextTime, 550, 100);animacion_tux();}
-            else if(flag==4){Texto_time(TextTime,800, 100);animacion_android();}
+            if(flag==1){Texto_time(TextTime, 50, 100);animacion_virus(redPosition);}
+            else if(flag==2){Texto_time(TextTime,300, 100);animacion_virus(wumPosition);}
+            else if(flag==3){Texto_time(TextTime, 550, 100);animacion_virus(tuxPosition);}
+            else if(flag==4){Texto_time(TextTime,800, 100);animacion_virus(andPosition);}
        	}
 	    else{
 			clockInd=1;
@@ -58,24 +58,24 @@ void juego::Power_up(int &LastScore,int &diferencia,int &clockInd,Clock &clockti
 		}
 			//colplayer(sredit1,swumpus1,wumPosition,1,wumLife);
         if(flag==1){
-            colplayer(sredit1,swumpus1,wumPosition,1,wumLife);
-            colplayer(sredit1,stux1,tuxPosition,3,tuxLife);
-            colplayer(sredit1,sandroid1,andPosition,4,andLife);
+            colplayer(svirus1,swumpus1,wumPosition,1,wumLife);
+            colplayer(svirus1,stux1,tuxPosition,3,tuxLife);
+            colplayer(svirus1,sandroid1,andPosition,4,andLife);
         }
         else if(flag==2){
-            colplayer(swumpus1,sredit1,redPosition,2,redLife);
-            colplayer(swumpus1,stux1,tuxPosition,3,tuxLife);
-            colplayer(swumpus1,sandroid1,andPosition,4,andLife);
+            colplayer(svirus1,sredit1,redPosition,2,redLife);
+            colplayer(svirus1,stux1,tuxPosition,3,tuxLife);
+            colplayer(svirus1,sandroid1,andPosition,4,andLife);
         }
         else if(flag==3){
-            colplayer(stux1,sandroid1,andPosition,4,andLife);
-            colplayer(stux1,sredit1,redPosition,2,redLife);
-            colplayer(stux1,swumpus1,wumPosition,1,wumLife);
+            colplayer(svirus1,sandroid1,andPosition,4,andLife);
+            colplayer(svirus1,sredit1,redPosition,2,redLife);
+            colplayer(svirus1,swumpus1,wumPosition,1,wumLife);
         }
         else if(flag==4){
-            colplayer(sandroid1,stux1,tuxPosition,3,tuxLife);
-            colplayer(sandroid1,sredit1,redPosition,2,redLife);
-            colplayer(sandroid1,swumpus1,wumPosition,1,wumLife);
+            colplayer(svirus1,stux1,tuxPosition,3,tuxLife);
+            colplayer(svirus1,sredit1,redPosition,2,redLife);
+            colplayer(svirus1,swumpus1,wumPosition,1,wumLife);
         }
 	}
 }

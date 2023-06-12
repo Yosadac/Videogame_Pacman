@@ -46,6 +46,8 @@ class juego{
 		
 		void winner();
 
+		void animacion_virus(Vector2f &Position);
+
 		Vector2f colision(Sprite x, RectangleShape Obs1, Vector2f spritePosition);
 	private:
 	
@@ -67,6 +69,10 @@ class juego{
 		
 		Sprite demo_redit1,demo_redit2, demo_redit3, demo_wumpus1, demo_wumpus2, demo_wumpus3,demo_tux1,demo_tux2,demo_tux3,demo_tux4,demo_android1,demo_android2,demo_android3,demo_android4;
 		
+		Texture virus1,virus2,virus3,virus4;
+
+		Sprite svirus1,svirus2,svirus3,svirus4,demo_virus1,demo_virus2,demo_virus3,demo_virus4;
+
 		vector<Sprite> spastillas;	
 		
 		Event event;

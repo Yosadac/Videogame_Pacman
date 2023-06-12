@@ -107,10 +107,10 @@ void juego::cargar_texturas(){
 
 	//TUX================================================================================================
 	
-	tux1.loadFromFile("nuevos_sprites/redditor/redditor1.png");
-	tux2.loadFromFile("nuevos_sprites/redditor/redditor2.png");
-	tux3.loadFromFile("nuevos_sprites/redditor/redditor3.png");
-	tux4.loadFromFile("nuevos_sprites/redditor/redditor4.png");
+	tux1.loadFromFile("nuevos_sprites/tux/tux1.png");
+	tux2.loadFromFile("nuevos_sprites/tux/tux2.png");
+	tux3.loadFromFile("nuevos_sprites/tux/tux3.png");
+	tux4.loadFromFile("nuevos_sprites/tux/tux4.png");
 
 	stux1.setTexture(tux1);
 	stux2.setTexture(tux2);
@@ -132,10 +132,10 @@ void juego::cargar_texturas(){
 
 	//ANDROID================================================================================================
 
-	android1.loadFromFile("nuevos_sprites/redditor/redditor1.png");
-	android2.loadFromFile("nuevos_sprites/redditor/redditor2.png");
-	android3.loadFromFile("nuevos_sprites/redditor/redditor3.png");
-	android4.loadFromFile("nuevos_sprites/redditor/redditor4.png");
+	android1.loadFromFile("nuevos_sprites/android/android1.png");
+	android2.loadFromFile("nuevos_sprites/android/android2.png");
+	android3.loadFromFile("nuevos_sprites/android/android3.png");
+	android4.loadFromFile("nuevos_sprites/android/android4.png");
 
 	sandroid1.setTexture(android1);
 	sandroid2.setTexture(android2);
@@ -150,10 +150,33 @@ void juego::cargar_texturas(){
 	demo_android2.setPosition(830,50);
 	demo_android3.setPosition(860,50);
 
-	sandroid1.setScale(0.8f,0.8f);
-	sandroid2.setScale(0.8f,0.8f);
-	sandroid3.setScale(0.8f,0.8f);
-	sandroid4.setScale(0.8f,0.8f);
+	sandroid1.setScale(0.7f,0.7f);
+	sandroid2.setScale(0.7f,0.7f);
+	sandroid3.setScale(0.7f,0.7f);
+	sandroid4.setScale(0.7f,0.7f);
+
+	//VIRUS================================================================================================
+
+	virus1.loadFromFile("nuevos_sprites/virus/virus1.png");
+	virus2.loadFromFile("nuevos_sprites/virus/virus2.png");
+	virus3.loadFromFile("nuevos_sprites/virus/virus3.png");
+	virus4.loadFromFile("nuevos_sprites/virus/virus4.png");
+
+	svirus1.setTexture(virus1);
+	svirus2.setTexture(virus2);
+	svirus3.setTexture(virus3);
+	svirus4.setTexture(virus4);
+	
+	demo_virus1.setTexture(virus1);
+	demo_virus2.setTexture(virus1);
+	demo_virus3.setTexture(virus1);
+	demo_virus4.setTexture(virus1);
+
+	svirus1.setScale(0.7f,0.7f);
+	svirus2.setScale(0.7f,0.7f);
+	svirus3.setScale(0.7f,0.7f);
+	svirus4.setScale(0.7f,0.7f);
+
 
 }
 

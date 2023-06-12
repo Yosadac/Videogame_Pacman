@@ -100,8 +100,8 @@ void juego::animacion_redit(){
         	    ventana1->draw(sredit3);
         	}  
         	else {
-        	    sredit3.setPosition(redPosition);
-        	    ventana1->draw(sredit3);
+        	    sredit4.setPosition(redPosition);
+        	    ventana1->draw(sredit4);
         	}  
        
 
