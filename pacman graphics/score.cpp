@@ -15,6 +15,7 @@ void juego::mostrar_score(){
 		ventana1 -> draw(demo_redit2);
 	}
 	else if(redLife==1){ventana1 -> draw(demo_redit1);}
+	else if(redLife==0 && red_alive==true){players_alive=players_alive-1;red_alive=false;}
 
     
     // Texto y vidas WUMPUS
@@ -32,6 +33,7 @@ void juego::mostrar_score(){
 		ventana1 -> draw(demo_wumpus2);
 	}
 	else if(wumLife==1){ventana1 -> draw(demo_wumpus1);}
+	else if(wumLife==0 && wum_alive==true){players_alive=players_alive-1;wum_alive=false;}
 
 	// Texto y vidas TUX
 	scoreString_tux = "SCORE: " + std::to_string(score_tux);
@@ -48,6 +50,7 @@ void juego::mostrar_score(){
 		ventana1 -> draw(demo_tux2);
 	}
 	else if (tuxLife==1){ventana1 -> draw(demo_tux1);}
+	else if(tuxLife==0 && tux_alive==true){players_alive=players_alive-1;tux_alive=false;}
 
 
 	// Texto y vidas ANDROID
@@ -65,6 +68,7 @@ void juego::mostrar_score(){
 		ventana1 -> draw(demo_android2);
 	}
 	else if(andLife==1){ventana1 -> draw(demo_android1);}
+	else if(andLife==0 && and_alive==true){players_alive=players_alive-1;and_alive=false;}
 
 
     
@@ -141,5 +145,65 @@ void juego::posicion_puntos(){
  
 	};
 
+
+}
+
+
+void juego::winner(){
+
+
+
+	if(redLife>0){
+		
+		string ganador = " WINNER REDDIT ";
+    	Text TextWin(ganador, font, 50);
+		sredit1.setScale(5.0f,5.0f);
+    	sredit2.setScale(5.0f,5.0f);
+    	sredit3.setScale(5.0f,5.0f);
+		sredit4.setScale(5.0f,5.0f);
+		TextWin.setPosition(200, 200);
+		redPosition=Vector2f(500,500);
+		ventana1->draw(TextWin);
+		animacion_redit();
+		
+	}
+	else if(wumLife>0){
+
+		string ganador = " WINNER WUMPUS ";
+		Text TextWin(ganador, font, 50);
+		swumpus1.setScale(5.0f,5.0f);
+		swumpus2.setScale(5.0f,5.0f);
+		swumpus3.setScale(5.0f,5.0f);
+		TextWin.setPosition(200, 200);
+		wumPosition=Vector2f(500,500);
+		ventana1->draw(TextWin);
+		animacion_wumpus();
+	}
+	else if(tuxLife>0){
+
+		string ganador = " WINNER TUX ";
+		Text TextWin(ganador, font, 50);
+		stux1.setScale(5.0f,5.0f);
+		stux2.setScale(5.0f,5.0f);
+		stux3.setScale(5.0f,5.0f);
+		stux4.setScale(5.0f,5.0f);
+		TextWin.setPosition(200, 200);
+		tuxPosition=Vector2f(500,500);
+		ventana1->draw(TextWin);
+		animacion_tux();
+	}
+	else if(andLife>0){
+
+		string ganador = " WINNER ANDROID ";
+		Text TextWin(ganador, font, 50);
+		sandroid1.setScale(5.0f,5.0f);
+		sandroid2.setScale(5.0f,5.0f);
+		sandroid3.setScale(5.0f,5.0f);
+		sandroid4.setScale(5.0f,5.0f);
+		TextWin.setPosition(200, 200);
+		andPosition=Vector2f(500,500);
+		ventana1->draw(TextWin);
+		animacion_android();
+	}
 
 }
