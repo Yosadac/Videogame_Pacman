@@ -79,6 +79,7 @@ void juego::cargar_texturas(){
     sredit1.setScale(0.8f,0.8f);
     sredit2.setScale(0.8f,0.8f);
     sredit3.setScale(0.8f,0.8f);
+	sredit4.setScale(0.8f,0.8f);
 	
 	//sredit.setScale(0.03f,0.03f);
     	

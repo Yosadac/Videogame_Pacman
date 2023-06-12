@@ -1,8 +1,9 @@
+//#pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "juego.h"
 
-void mostrarMenu() {
+void mostrarMenu(int &vuelta) {
 //int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Menú del Juego");
 
@@ -68,6 +69,7 @@ void mostrarMenu() {
                     {
                         // Lógica para la opción "Salir"
                         std::cout << "Saliendo del juego..." << std::endl;
+                        vuelta=0;
                         window.close();
                     }
                 }

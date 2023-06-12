@@ -44,6 +44,8 @@ class juego{
 
 		void Power_up(int &LastScore,int &diferencia,int &clockInd,Clock &clocktime, Time &Tiempo,int &seconds, string &TextTime,bool &powerupplayer, int flag, int score, bool &confirmation);
 		
+		void winner();
+
 		Vector2f colision(Sprite x, RectangleShape Obs1, Vector2f spritePosition);
 	private:
 	
@@ -92,4 +94,6 @@ class juego{
 		bool powerupred,powerupwum,poweruptux,powerupand;
 		bool confirmationRed,confirmationWum,confirmationTux,confirmationAnd;
 
+		int players_alive;
+		bool red_alive,wum_alive,tux_alive,and_alive;
 };

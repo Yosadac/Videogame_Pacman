@@ -1,4 +1,5 @@
 #include "juego.h"
+#include "menu.h"
 
 
 
@@ -29,6 +30,11 @@ juego::juego(int resolucion_x,int resolucion_y, string titulo){
 	AndClock=1;
 	andLife=3;
 	confirmationAnd=false;
+	players_alive=4;
+	red_alive=true;
+	wum_alive=true;
+	tux_alive=true;
+	and_alive=true;
 
 	ContextSettings settings;
 	settings.antialiasingLevel = 0;
@@ -54,56 +60,61 @@ juego::juego(int resolucion_x,int resolucion_y, string titulo){
 void juego::dibujar_pantalla()
 {    	
     ventana1->clear();
-	
-	ventana1->draw(smapa);
-   
-	
-	/*for (auto& colision : colisiones )
-        {
-            ventana1->draw(colision);
-        }*/
-    for (auto& past : spastillas) {
-        ventana1->draw(past);
-    }
+	if(players_alive==1){
+		winner();
+	}
+	else{
 
-	if(redLife>0){
-		LastScoreRed=score_red-diferenciaRed;
-		if(LastScoreRed==100 && confirmationWum==false){
-			powerupred=true;
-			confirmationRed=true;
-		}
-		Power_up(LastScoreRed,diferenciaRed,RedClock,clockRed,TiempoRed,secondsRed,TextTimeRed,powerupred,1,score_red,confirmationRed);
-	}
-	if(wumLife>0){
-		LastScoreWum=score_wum-diferenciaWum;
-		if(LastScoreWum==100 && confirmationRed==false){
-			powerupwum=true;
-			confirmationWum=true;
-		}
-		Power_up(LastScoreWum,diferenciaWum,WumClock,clockWum,TiempoWum,secondsWum,TextTimeWum,powerupwum,2,score_wum,confirmationWum);
-	}
-	if(tuxLife>0){
-		LastScoreTux=score_tux-diferenciaTux;
-		if(LastScoreTux==100 && confirmationTux==false){
-			poweruptux=true;
-			confirmationTux=true;
-		}
-		Power_up(LastScoreTux,diferenciaTux,TuxClock,clockTux,TiempoTux,secondsTux,TextTimeTux,poweruptux,3,score_tux,confirmationTux);
-	}
-	if(andLife>0){
-		LastScoreAnd=score_and-diferenciaAnd;
-		if(LastScoreAnd==100 && confirmationAnd==false){
-			powerupand=true;
-			confirmationAnd=true;
-		}
-		Power_up(LastScoreAnd,diferenciaAnd,AndClock,clockAnd,TiempoAnd,secondsAnd,TextTimeAnd,powerupand,4,score_and,confirmationAnd);
-	}
-    mostrar_score();
-        //Puntos();
-        //animacion_pacman_muerte();
-        //ventana1->draw(sred);
+		ventana1->draw(smapa);
+	
 
-	ventana1->display();
+		/*for (auto& colision : colisiones )
+	        {
+	            ventana1->draw(colision);
+	        }*/
+	    for (auto& past : spastillas) {
+	        ventana1->draw(past);
+	    }
+
+		if(redLife>0){
+			LastScoreRed=score_red-diferenciaRed;
+			if(LastScoreRed==100 && confirmationWum==false){
+				powerupred=true;
+				confirmationRed=true;
+			}
+			Power_up(LastScoreRed,diferenciaRed,RedClock,clockRed,TiempoRed,secondsRed,TextTimeRed,powerupred,1,score_red,confirmationRed);
+		}
+		if(wumLife>0){
+			LastScoreWum=score_wum-diferenciaWum;
+			if(LastScoreWum==100 && confirmationRed==false){
+				powerupwum=true;
+				confirmationWum=true;
+			}
+			Power_up(LastScoreWum,diferenciaWum,WumClock,clockWum,TiempoWum,secondsWum,TextTimeWum,powerupwum,2,score_wum,confirmationWum);
+		}
+		if(tuxLife>0){
+			LastScoreTux=score_tux-diferenciaTux;
+			if(LastScoreTux==100 && confirmationTux==false){
+				poweruptux=true;
+				confirmationTux=true;
+			}
+			Power_up(LastScoreTux,diferenciaTux,TuxClock,clockTux,TiempoTux,secondsTux,TextTimeTux,poweruptux,3,score_tux,confirmationTux);
+		}
+		if(andLife>0){
+			LastScoreAnd=score_and-diferenciaAnd;
+			if(LastScoreAnd==100 && confirmationAnd==false){
+				powerupand=true;
+				confirmationAnd=true;
+			}
+			Power_up(LastScoreAnd,diferenciaAnd,AndClock,clockAnd,TiempoAnd,secondsAnd,TextTimeAnd,powerupand,4,score_and,confirmationAnd);
+		}
+    	mostrar_score();
+		//Puntos();
+ 	    //animacion_pacman_muerte();
+    	//ventana1->draw(sred);
+	}
+		ventana1->display();
+	
 }
 
 void juego::procesar_eventos(){
@@ -112,6 +123,7 @@ void juego::procesar_eventos(){
         {
             if (event.type == Event::Closed)
             {
+            
                 ventana1->close();
             }
         }
