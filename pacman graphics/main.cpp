@@ -81,7 +81,9 @@ int mostrarMenu(int vuelta) {
                         //system("/home/kali/Desktop/nuevo2/./iniciar_juego.sh");
                         std::cout << "Creando Partida..." << std::endl;
                         hostIP();
-                        window.close();
+                        if(connection>1){
+                            window.close();
+                        }
                     }
 
                     else if (selectedOption == 1)

@@ -7,9 +7,13 @@
 using namespace std;
 using namespace sf;
 
+int connection=1;
 
 void obtenerIP(string &ip2){
 char ip;
+
+ip2="";
+
 string ipAdres;
 Font font;
 font.loadFromFile("consolas.TTF");
@@ -29,7 +33,6 @@ while (window.pollEvent(event))
             
                 window.close();
             }
-        }
         
 if (Keyboard::isKeyPressed(Keyboard::Num1))
         {
@@ -101,66 +104,100 @@ if (Keyboard::isKeyPressed(Keyboard::Num1))
         {
             window.close();
         }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Backspace)) {
+        	if (!ip2.empty()) {
+        		ip2.pop_back();
+        		ipAdres.pop_back(); // Opcional: también eliminar el último carácter de ipAdres
+    		}
+        }
 
 
-Text IP(ipAdres,font, 24);
-Text Mensaje("Ingrese la IP del Host:", font, 24);
-Mensaje.setPosition(100,100);
+	Text IP(ipAdres,font, 24);
+	Text Mensaje("Ingrese la IP del Host:", font, 24);
+	Mensaje.setPosition(100,100);
+	
+	//IP.setScale(4,4);
+	IP.setPosition(250,170);
+	        window.clear();
+	
+	        window.draw(Mensaje);
+	        window.draw(IP);
+	        window.display();
+	        sf::sleep(sf::milliseconds(80));
+	}
 
-//IP.setScale(4,4);
-IP.setPosition(250,170);
-        window.clear();
-
-        window.draw(Mensaje);
-        window.draw(IP);
-        window.display();
-        sf::sleep(sf::milliseconds(80));
 }
-
 }
 
 /*=======================================
                 Parte dos
 =======================================*/
 void hostIP(){
-char ip;
-string ipAdres;
-Font font;
-font.loadFromFile("consolas.TTF");
-RenderWindow window(VideoMode(600,300),"Ingresar IP");
-while(window.isOpen()){
+    char ip;
+    string ipAdres;
+    Font font;
+    font.loadFromFile("consolas.TTF");
+    RenderWindow window(VideoMode(600,300),"Ingresar IP");
+    while(window.isOpen()){
+        Event event;
+
+        sf::sleep(sf::milliseconds(100));
 
 
-
-Event event;
-
-sf::sleep(sf::milliseconds(100));
-
-
-while (window.pollEvent(event))
+        while (window.pollEvent(event))
         {
             if (event.type == Event::Closed)
             {
                 window.close();
             }
         }
-        
+        if(connection>1){
+            if (Keyboard::isKeyPressed(Keyboard::Enter))
+                {
+                    window.close();
+                }
+        }
 
-IpAddress ipAddress = sf::IpAddress::getLocalAddress();
-std::cout << "IP Address: " << ipAddress.toString() << std::endl;
 
-Text IP(ipAddress.toString(),font, 24);
-Text Mensaje("Tu IP es: ", font, 24);
-Mensaje.setPosition(100,100);
 
-//IP.setScale(4,4);
-IP.setPosition(250,170);
+
+        /*=============================================================================*/
+        /*Aqui va lo de yosa, recuerda sumar 1 a connection cuando se haga una conexion*/
+        /*=============================================================================*/
+
+
+
+
+
+        IpAddress ipAddress = sf::IpAddress::getLocalAddress();
+
+        Text IP(ipAddress.toString(),font, 24);
+        Text Mensaje("Tu IP es: ", font, 24);
+        Mensaje.setPosition(100,100);
+
+        //IP.setScale(4,4);
+        IP.setPosition(250,170);
+
+        Text Mensaje_salida("Presiona ENTER para iniciar...", font, 24);
+        Mensaje_salida.setPosition(100,200);
+
+        Text Mensaje_espera("Esperando jugadores...", font, 24);
+        Mensaje_espera.setPosition(100,200);
         window.clear();
 
+        if(connection>1){
+            window.draw(Mensaje_salida);
+        }
+        else{
+            window.draw(Mensaje_espera);
+        }
         window.draw(Mensaje);
         window.draw(IP);
         window.display();
         sf::sleep(sf::milliseconds(10));
-}
+
+    }
+
+
 
 }
