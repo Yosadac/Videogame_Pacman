@@ -92,6 +92,7 @@ int mostrarMenu(int vuelta) {
                         std::cout << "Accediendo a una partida..." << std::endl;
                         obtenerIP(ipAddress);
                         std::cout << "Dirección IP: " << ipAddress << std::endl;
+                        cliente(ipAddress);
                     }
 
                     else if (selectedOption == 2)
