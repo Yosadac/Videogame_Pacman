@@ -8,6 +8,8 @@
 using namespace std;
 using namespace sf;
 
+vector <pair<int,string>> ipClient;
+
 
 std::vector<sf::TcpSocket*> clients;
 
@@ -48,10 +50,12 @@ void serverThread() {
     std::cout << "Servidor iniciado. Esperando clientes..." << std::endl;
 
     for (int i = 0; i <1; i++) {
+
         sf::TcpSocket* client = new sf::TcpSocket();
         if (listener.accept(*client) == sf::Socket::Done) {
-            std::cout << "Cliente " << i + 1 << " conectado." << std::endl;
+            //std::cout << "Cliente " << i + 1 << " conectado." << std::endl;
             connection=connection+1;
+            ipClient.push_back(make_pair(connection,client->getRemoteAddress().toString()));
             clients.push_back(client);
             std::thread clientThread(receiveMessagesHost, client);
             clientThread.detach();
@@ -63,8 +67,26 @@ void serverThread() {
 
     std::string message;
     while (true) {
-        std::cout << "Mensaje (Host): ";
-        std::getline(std::cin, message);
+        /*std::cout << "Mensaje (Host): ";
+        std::getline(std::cin, message);*/
+
+        std::string message; 
+	    if (Keyboard::isKeyPressed(Keyboard::Left))
+        {
+        	message = "Tecla A presionada";
+        }
+        else if (Keyboard::isKeyPressed(Keyboard::Right))
+        {
+           	message = "Tecla D presionada";
+        }
+        else if (Keyboard::isKeyPressed(Keyboard::Up))
+        {
+            	message = "Tecla W presionada";
+        }
+        else if (Keyboard::isKeyPressed(Keyboard::Down))
+        {
+             	message = "Tecla S presionada";
+        }
 
         for (sf::TcpSocket* client : clients) {
             sf::Packet packet;
@@ -111,7 +133,7 @@ void cliente(string SERVER_IP) {
 
     std::string message;
     while (true) {
-        std::cout << "Mensaje: ";
+        /*std::cout << "Mensaje: ";
         std::getline(std::cin, message);
 
         sf::Packet packet;
@@ -119,6 +141,28 @@ void cliente(string SERVER_IP) {
 
         if (socket.send(packet) != sf::Socket::Done) {
             std::cout << "Error al enviar mensaje al servidor." << std::endl;
+        }*/
+
+        
+	    if (Keyboard::isKeyPressed(Keyboard::Left))
+        {
+        	message = "Tecla A presionada";
+        	socket.send(message.c_str(), message.size() + 1);
+        }
+        else if (Keyboard::isKeyPressed(Keyboard::Right))
+        {
+           	message = "Tecla D presionada";
+        	socket.send(message.c_str(), message.size() + 1);
+        }
+        else if (Keyboard::isKeyPressed(Keyboard::Up))
+        {
+            	message = "Tecla W presionada";
+        	socket.send(message.c_str(), message.size() + 1);
+        }
+        else if (Keyboard::isKeyPressed(Keyboard::Down))
+        {
+             	message = "Tecla S presionada";
+        	socket.send(message.c_str(), message.size() + 1);
         }
     }
 }
