@@ -12,6 +12,7 @@ using namespace sf;
 std::vector<sf::TcpSocket*> clients;
 
 int connection=1;
+bool server=false;
 
 
 const unsigned short PORT = 2000;
@@ -286,7 +287,10 @@ void hostIP(){
         /*=============================================================================*/
 
         /*Inicia el host*/
-        iniciar_server();
+        if(server==false){
+        	iniciar_server();
+        	server=true;
+        }
 
 
 
