@@ -9,9 +9,11 @@ int jugar;
 
 int main(int argc, char* args[]) {
 
+    
 	
 	jugar=1;
 	do{
+        host=false;
 		jugar=mostrarMenu(jugar);
 	    if(jugar==1){
 			juego* partida1 = new juego(1000, 1000, "Bite The Bytes");
@@ -81,6 +83,7 @@ int mostrarMenu(int vuelta) {
                         //system("/home/kali/Desktop/nuevo2/./iniciar_juego.sh");
                         std::cout << "Creando Partida..." << std::endl;
                         hostIP();
+                        host=true;
                         if(connection>1){
                             window.close();
                         }

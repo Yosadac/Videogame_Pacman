@@ -8,7 +8,7 @@
 using namespace std;
 using namespace sf;
 
-vector <pair<int,string>> ipClient;
+vector <string> ipClient;
 
 
 std::vector<sf::TcpSocket*> clients;
@@ -16,7 +16,8 @@ std::vector<sf::TcpSocket*> clients;
 int connection=1;
 bool server=false;
 
-
+std::string messageC;
+std::string messageH;
 const unsigned short PORT = 2000;
 
 
@@ -29,12 +30,11 @@ const unsigned short PORT = 2000;
 
 
 void receiveMessagesHost(sf::TcpSocket* client) {
-    std::string message;
     while (true) {
         sf::Packet packet;
         if (client->receive(packet) == sf::Socket::Done) {
-            packet >> message;
-            std::cout << "Cliente " << client->getRemoteAddress() << " recibió: " << message << std::endl;
+            packet >> messageH;
+            std::cout << "Cliente " << client->getRemoteAddress() << " recibió: " << messageH << std::endl;
         }
     }
 }
@@ -55,8 +55,7 @@ void serverThread() {
         if (listener.accept(*client) == sf::Socket::Done) {
             //std::cout << "Cliente " << i + 1 << " conectado." << std::endl;
             connection=connection+1;
-            ipClient.push_back(make_pair(connection,client->getRemoteAddress().toString()));
-            std::cout << "Cliente " << ipClient[i].first<< " conectado. " << ipClient[i].second<< std::endl;
+            ipClient.push_back(client->getRemoteAddress().toString());
             clients.push_back(client);
             std::thread clientThread(receiveMessagesHost, client);
             clientThread.detach();
@@ -110,12 +109,12 @@ void iniciar_server(){
 
 
 void receiveMessages(sf::TcpSocket& socket) {
-    std::string message;
+
     while (true) {
         sf::Packet packet;
         if (socket.receive(packet) == sf::Socket::Done) {
-            packet >> message;
-            std::cout << message << std::endl;
+            packet >> messageC;
+            std::cout << messageC << std::endl;
         }
     }
 }
@@ -155,11 +154,11 @@ void cliente(string SERVER_IP) {
         }
         else if (Keyboard::isKeyPressed(Keyboard::Up))
         {
-            	message = "Tecla W presionada";
+            message = "Tecla W presionada";
         }
         else if (Keyboard::isKeyPressed(Keyboard::Down))
         {
-             	message = "Tecla S presionada";
+            message = "Tecla S presionada";
         }
 
         sf::Packet packet;

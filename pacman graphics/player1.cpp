@@ -2,6 +2,7 @@
 
 void juego::mov_redit(){
 
+    if(host==true){
         // Mover personaje con las teclas de flecha
         if (Keyboard::isKeyPressed(Keyboard::Left))
         {
@@ -53,6 +54,62 @@ void juego::mov_redit(){
             }
             //	aviso=0;
         }
+    }
+    else
+    {
+        // Mover personaje con las teclas de flecha
+        if (messageC=="Tecla A presionada")
+        {
+            //spacman.move(-1, 0);
+            //spritePosition.x -= 1.2;
+            if(aviso_red==1 && mov_red!=3){
+            	mov_red=3;
+            	redPosition.x -= 10.0;
+            	aviso_red=0;
+            }
+            else if(aviso_red==0){
+            	mov_red=3;
+            }
+            //aviso=0;
+        }
+        else if (messageC=="Tecla D presionada")
+        {
+	    if(aviso_red==1 && mov_red!=4){	
+            	mov_red=4;
+            	aviso_red=0;
+            	redPosition.x += 10.0;
+            }
+            else if(aviso_red==0){
+            	mov_red=4;
+            }
+            //aviso=0;
+        }
+        else if (messageC=="Tecla W presionada")
+        {
+	    if(aviso_red==1 && mov_red!=1){
+            	mov_red=1;
+            	aviso_red=0;
+            	redPosition.y -= 10.0;
+            }
+            else if(aviso_red==0){
+            	mov_red=1;
+            }
+            //aviso=0;
+        }
+        else if (messageC=="Tecla S presionada")
+        {
+            if(aviso_red==1 && mov_red!=2){
+            	mov_red=2;
+            	aviso_red=0;
+            	redPosition.y += 10.0;
+            }
+            else if(aviso_red==0){
+            	mov_red=2;
+            }
+            //	aviso=0;
+        }
+
+    }
         
         
    if(aviso_red==0){

@@ -1,13 +1,16 @@
 //#pragma once
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
+//#include <SFML/Graphics.hpp>
+//#include <SFML/Audio.hpp>
 //#include <gif_lib.h>
-#include <vector>
-#include <iostream>
+//#include <vector>
+//#include <iostream>
+#include "obtenerIP.h"
 
-using namespace std;
-using namespace sf;
 
+//using namespace std;
+//using namespace sf;
+
+bool host;
 
 class juego{
 
@@ -49,6 +52,7 @@ class juego{
 		void animacion_virus(Vector2f &Position);
 
 		Vector2f colision(Sprite x, RectangleShape Obs1, Vector2f spritePosition);
+	
 	private:
 	
 		RenderWindow * ventana1;
