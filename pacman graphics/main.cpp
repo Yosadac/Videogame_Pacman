@@ -96,6 +96,7 @@ int mostrarMenu(int vuelta) {
                         obtenerIP(ipAddress);
                         std::cout << "Dirección IP: " << ipAddress << std::endl;
                         cliente(ipAddress);
+                        window.close();
                     }
 
                     else if (selectedOption == 2)
