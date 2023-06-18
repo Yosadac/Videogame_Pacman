@@ -56,6 +56,7 @@ void serverThread() {
             //std::cout << "Cliente " << i + 1 << " conectado." << std::endl;
             connection=connection+1;
             ipClient.push_back(make_pair(connection,client->getRemoteAddress().toString()));
+            std::cout << "Cliente " << ipClient[i].first<< " conectado. " << ipClient[i].second<< std::endl;
             clients.push_back(client);
             std::thread clientThread(receiveMessagesHost, client);
             clientThread.detach();
@@ -114,7 +115,7 @@ void receiveMessages(sf::TcpSocket& socket) {
         sf::Packet packet;
         if (socket.receive(packet) == sf::Socket::Done) {
             packet >> message;
-            std::cout << "Mensaje recibido: " << message << std::endl;
+            std::cout << message << std::endl;
         }
     }
 }
@@ -147,22 +148,25 @@ void cliente(string SERVER_IP) {
 	    if (Keyboard::isKeyPressed(Keyboard::Left))
         {
         	message = "Tecla A presionada";
-        	socket.send(message.c_str(), message.size() + 1);
         }
         else if (Keyboard::isKeyPressed(Keyboard::Right))
         {
            	message = "Tecla D presionada";
-        	socket.send(message.c_str(), message.size() + 1);
         }
         else if (Keyboard::isKeyPressed(Keyboard::Up))
         {
             	message = "Tecla W presionada";
-        	socket.send(message.c_str(), message.size() + 1);
         }
         else if (Keyboard::isKeyPressed(Keyboard::Down))
         {
              	message = "Tecla S presionada";
-        	socket.send(message.c_str(), message.size() + 1);
+        }
+
+        sf::Packet packet;
+        packet << message;
+
+        if (socket.send(packet) != sf::Socket::Done) {
+            std::cout << "Error al enviar mensaje al servidor." << std::endl;
         }
     }
 }
