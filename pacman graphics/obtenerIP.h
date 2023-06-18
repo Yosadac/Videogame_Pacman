@@ -4,6 +4,7 @@
 #include <vector>
 #include <iostream>
 #include <thread>
+#include <fstream>
 
 using namespace std;
 using namespace sf;
@@ -20,6 +21,8 @@ std::string messageC;
 std::string messageH;
 const unsigned short PORT = 2000;
 
+bool host;
+
 
 /*=======================================
                 Parte cero
@@ -35,6 +38,13 @@ void receiveMessagesHost(sf::TcpSocket* client) {
         if (client->receive(packet) == sf::Socket::Done) {
             packet >> messageH;
             std::cout << "Cliente " << client->getRemoteAddress() << " recibió: " << messageH << std::endl;
+            std::ofstream archivo("mensaje.txt");
+            if (archivo.is_open()) {
+                archivo << messageH;
+                archivo.close();
+            } else {
+                std::cout << "No se pudo abrir el archivo." << std::endl;
+            }
         }
     }
 }
@@ -115,6 +125,13 @@ void receiveMessages(sf::TcpSocket& socket) {
         if (socket.receive(packet) == sf::Socket::Done) {
             packet >> messageC;
             std::cout << messageC << std::endl;
+            std::ofstream archivo("mensaje.txt");
+            if (archivo.is_open()) {
+                archivo << messageC;
+                archivo.close();
+            } else {
+                std::cout << "No se pudo abrir el archivo." << std::endl;
+            }
         }
     }
 }

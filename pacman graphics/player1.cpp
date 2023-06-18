@@ -2,7 +2,31 @@
 
 void juego::mov_redit(){
 
-    if(host==true){
+    std::string texto;
+    std::string messageC;
+    std::ifstream archivo("player.txt");
+    if (archivo.is_open()) {
+        std::cout << "Contenido del archivo:" << std::endl;
+        while (std::getline(archivo, texto)) {
+            std::cout << texto << std::endl;
+        }
+        archivo.close();
+    } else {
+        std::cout << "No se pudo abrir el archivo." << std::endl;
+    }
+
+    std::ifstream archivo2("mensaje.txt");
+    if (archivo2.is_open()) {
+        std::cout << "Contenido del archivo:" << std::endl;
+        while (std::getline(archivo2, texto)) {
+            std::cout << texto << std::endl;
+        }
+        archivo2.close();
+    } else {
+        std::cout << "No se pudo abrir el archivo." << std::endl;
+    }
+
+    if(texto=="HOST"){
         // Mover personaje con las teclas de flecha
         if (Keyboard::isKeyPressed(Keyboard::Left))
         {

@@ -1,16 +1,16 @@
 //#pragma once
-//#include <SFML/Graphics.hpp>
-//#include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 //#include <gif_lib.h>
-//#include <vector>
-//#include <iostream>
-#include "obtenerIP.h"
+#include <vector>
+#include <iostream>
+#include <fstream>
+#include <string>
+//#include "obtenerIP.h"
 
 
-//using namespace std;
-//using namespace sf;
-
-bool host;
+using namespace std;
+using namespace sf;
 
 class juego{
 
