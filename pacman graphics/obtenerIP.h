@@ -39,11 +39,11 @@ void receiveMessagesHost(sf::TcpSocket* client) {
     while (true) {
         sf::Packet packet;
         if (client->receive(packet) == sf::Socket::Done) {
-            std::cout << "Cliente " << client->getRemoteAddress() << " recibió: " << messageH << std::endl;
+            std::cout << "Cliente " << client->getRemoteAddress() << " recibió: " << packet << std::endl;
             //crear un nuevo archivo txt y abrirlo y escribir
             std::ofstream player("player.txt");
             if (player.is_open()) {
-                player << messageH;
+                player << packet;
                 player.close();
             } else {
                 std::cout << "No se pudo abrir el archivo txt." << std::endl;
