@@ -4,11 +4,11 @@
 
 
 int mostrarMenu(int vuelta);
+void leer_partida();
 
 int jugar;
 
 int main(int argc, char* args[]) {
-
     
 	
 	jugar=1;
@@ -26,6 +26,7 @@ int main(int argc, char* args[]) {
 
 int mostrarMenu(int vuelta) {
 //int main() {
+
     sf::RenderWindow window(sf::VideoMode(800, 600), "Menu del Juego");
     sf::Text texto;
     std::string ipAddress;
@@ -58,6 +59,7 @@ int mostrarMenu(int vuelta) {
 
     while (window.isOpen())
     {
+        if(partida_iniciada!=true){
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -98,9 +100,6 @@ int mostrarMenu(int vuelta) {
                         obtenerIP(ipAddress);
                         std::cout << "Dirección IP: " << ipAddress << std::endl;
                         cliente(ipAddress);
-                        if(partida_inicida==true){
-                            window.close();
-                        }
                         //window.close();
                     }
 
@@ -147,6 +146,14 @@ int mostrarMenu(int vuelta) {
 
         window.display();
     }
+    else{
+        vuelta=1;
+        partida_iniciada=false;
+        std::thread sendThread(enviar_mensaje, std::ref(socketClient));
+        sendThread.detach();
+        window.close();
+    }
+}
 
     //juego* partida1 = new juego(1000, 1000, "Bite The Bytes");
 

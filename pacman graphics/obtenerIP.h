@@ -13,6 +13,7 @@ vector <string> ipClient;
 
 
 std::vector<sf::TcpSocket*> clients;
+sf::TcpSocket socketClient;
 
 int connection=1;
 bool server=false;
@@ -23,7 +24,7 @@ const unsigned short PORT = 2000;
 
 bool host;
 
-bool partida_inicida=false;
+bool partida_iniciada=false;
 
 
 /*=======================================
@@ -38,7 +39,6 @@ void receiveMessagesHost(sf::TcpSocket* client) {
     while (true) {
         sf::Packet packet;
         if (client->receive(packet) == sf::Socket::Done) {
-            packet >> messageH;
             std::cout << "Cliente " << client->getRemoteAddress() << " recibió: " << messageH << std::endl;
         } else {
             std::cout << "No se pudo abrir el archivo." << std::endl;
@@ -73,42 +73,38 @@ void serverThread() {
         }
     }
 
-    std::string message;
+    std::string message,messageAux="";;
     while (true) {
         /*std::cout << "Mensaje (Host): ";
         std::getline(std::cin, message);*/
-
-        std::string message,messageAux; 
+ 
 	    if (Keyboard::isKeyPressed(Keyboard::Left))
         {
         	message = "Tecla A presionada";
-            messageAux=message;
         }
         else if (Keyboard::isKeyPressed(Keyboard::Right))
         {
            	message = "Tecla D presionada";
-            messageAux=message;
         }
         else if (Keyboard::isKeyPressed(Keyboard::Up))
         {
             	message = "Tecla W presionada";
-                messageAux=message;
         }
         else if (Keyboard::isKeyPressed(Keyboard::Down))
         {
              	message = "Tecla S presionada";
-                messageAux=message;
         }
         else if (Keyboard::isKeyPressed(Keyboard::Enter))
         {
              	message = "Enter";
-                messageAux=message;
         }
 
         if(messageAux!=message){
+            messageAux=message;
             for (sf::TcpSocket* client : clients) {
                 sf::Packet packet;
                 packet << message;
+                cout<<message<<endl;
                 if (client->send(packet) != sf::Socket::Done) {
                     std::cout << "Error al enviar mensaje a un cliente." << std::endl;
                 }
@@ -126,25 +122,8 @@ void iniciar_server(){
 
 /*Funciones para el cliente o los siguientes jugadores*/
 
-
-void receiveMessages(sf::TcpSocket& socket) {
-
-    while (true) {
-        sf::Packet packet;
-        if (socket.receive(packet) == sf::Socket::Done) {
-            packet >> messageC;
-            if(messageC=="Enter" && partida_inicida==false){
-                partida_inicida=true;
-            }
-        } else {
-            std::cout << "No se pudo abrir el archivo." << std::endl;
-        }
-    }
-}
-
-
 void enviar_mensaje(TcpSocket &socket){
-    std::string message,messageAux;
+    std::string message,messageAux="";
     while (true) {
         /*std::cout << "Mensaje: ";
         std::getline(std::cin, message);
@@ -160,27 +139,24 @@ void enviar_mensaje(TcpSocket &socket){
 	    if (Keyboard::isKeyPressed(Keyboard::Left))
         {
         	message = "Tecla A presionada";
-            messageAux=message;
         }
         else if (Keyboard::isKeyPressed(Keyboard::Right))
         {
            	message = "Tecla D presionada";
-            messageAux=message;
         }
         else if (Keyboard::isKeyPressed(Keyboard::Up))
         {
             message = "Tecla W presionada";
-            messageAux=message;
         }
         else if (Keyboard::isKeyPressed(Keyboard::Down))
         {
             message = "Tecla S presionada";
-            messageAux=message;
         }
 
         sf::Packet packet;
         packet << message;
         if(messageAux!=message){
+            messageAux=message;
             if (socket.send(packet) != sf::Socket::Done) {
                 std::cout << "Error al enviar mensaje al servidor." << std::endl;
             }
@@ -188,20 +164,41 @@ void enviar_mensaje(TcpSocket &socket){
     }
 }
 
+
+void receiveMessages(sf::TcpSocket& socket) {
+
+    while (true) {
+        sf::Packet packet;
+        if (socket.receive(packet) == sf::Socket::Done) {
+            packet >> messageC;
+            cout<<messageC<<endl;
+            if(messageC=="Enter"){
+                partida_iniciada=true;
+            }  
+        } else {
+            std::cout << "No se pudo abrir el archivo." << std::endl;
+        }
+    }
+}
+
+
+
 void cliente(string SERVER_IP) {
-    sf::TcpSocket socket;
-    if (socket.connect(SERVER_IP, PORT) != sf::Socket::Done) {
+    //sf::TcpSocket socketClient;
+    if (socketClient.connect(SERVER_IP, PORT) != sf::Socket::Done) {
         std::cout << "Error al conectar al servidor." << std::endl;
         return ;
     }
 
     std::cout << "Conexión exitosa al servidor." << std::endl;
 
-    std::thread receiveThread(receiveMessages, std::ref(socket));
+    std::thread receiveThread(receiveMessages, std::ref(socketClient));
     receiveThread.detach();
 
-    std::thread sendThread(enviar_mensaje, std::ref(socket));
-    sendThread.detach();
+    /*std::thread sendThread(enviar_mensaje, std::ref(socket));
+    sendThread.detach();*/
+
+    //enviar_mensaje(socket);
     
 }
 
