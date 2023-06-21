@@ -1,23 +1,22 @@
 #include "juego.h"
 #include "obtenerIP.h"
-#include <SFML/Graphics.hpp>
-#include <iostream>
-#include <SFML/Network.hpp>
-#include <fstream>
+
 
 
 int mostrarMenu(int vuelta);
+void leer_partida();
 
 int jugar;
 
 int main(int argc, char* args[]) {
-
+    
 	
 	jugar=1;
 	do{
+        host=false;
 		jugar=mostrarMenu(jugar);
 	    if(jugar==1){
-			juego* partida1 = new juego(1000, 1000, "Bite The Bytes");
+			juego* partida1 = new juego(1000, 1000, "Bite The Bytes",server);
 		}	
 	}while(jugar==1);
 
@@ -27,7 +26,8 @@ int main(int argc, char* args[]) {
 
 int mostrarMenu(int vuelta) {
 //int main() {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Menú del Juego");
+
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Menu del Juego");
     sf::Text texto;
     std::string ipAddress;
 
@@ -59,6 +59,7 @@ int mostrarMenu(int vuelta) {
 
     while (window.isOpen())
     {
+        if(partida_iniciada!=true){
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -84,20 +85,11 @@ int mostrarMenu(int vuelta) {
                         //system("/home/kali/Desktop/nuevo2/./iniciar_juego.sh");
                         std::cout << "Creando Partida..." << std::endl;
                         hostIP();
+                        //host=true;
+                        
                         
                         if(connection>1){
-                        std::ofstream archivo("direccion.txt");
-                        archivo.is_open();
-                        archivo << "HOST";
-        		archivo.close();
-        		std::cout << "host guardado en direccion.txt" << std::endl;
-        		
-        		std::ofstream archivo1("player.txt");
-                        archivo1.is_open();
-                        archivo1 << "player1";
-        		archivo1.close();
                             window.close();
-                            
                         }
                     }
 
@@ -107,20 +99,8 @@ int mostrarMenu(int vuelta) {
                         std::cout << "Accediendo a una partida..." << std::endl;
                         obtenerIP(ipAddress);
                         std::cout << "Dirección IP: " << ipAddress << std::endl;
-                        
-                         std::ofstream archivo("direccion.txt");
-    			if (archivo.is_open()) {
-        		// Escribir la dirección IP en el archivo
-        		archivo << ipAddress;
-        		archivo.close();
-        		std::cout << "Dirección IP guardada correctamente en direccion.txt" << std::endl;
-        		window.close();
-        		}
-        		
-        		std::ofstream archivo1("player.txt");
-                        archivo1.is_open();
-                        archivo1 << "player2";
-        		archivo1.close();
+                        cliente(ipAddress);
+                        //window.close();
                     }
 
                     else if (selectedOption == 2)
@@ -166,6 +146,14 @@ int mostrarMenu(int vuelta) {
 
         window.display();
     }
+    else{
+        vuelta=1;
+        partida_iniciada=false;
+        std::thread sendThread(enviar_mensaje, std::ref(socketClient));
+        sendThread.detach();
+        window.close();
+    }
+}
 
     //juego* partida1 = new juego(1000, 1000, "Bite The Bytes");
 

@@ -1,51 +1,12 @@
 #include "juego.h"
 #include "menu.h"
-#include <asio.hpp>
-#include <iostream>
-#include <thread>
-#include <fstream>
-#include <SFML/Network.hpp>
-#include <csignal>
-#include <cstring>
-#include <unistd.h>
-#include <string>
-
-#define PORT 2000
-using asio::ip::tcp;
-using namespace sf;
 
 
-// Variable global para indicar si se ha recibido una señal SIGINT
-bool receivedSignal = false;
-
-// Función de manejo de señal
-void signalHandler(int signum) {
-    // Establece la variable global para indicar que se ha recibido la señal SIGINT
-    receivedSignal = true;
-}
 
 
-juego::juego(int resolucion_x,int resolucion_y, string titulo){
+juego::juego(int resolucion_x,int resolucion_y, string titulo, bool ser){
 
-	/*
-
-	    // Configura el manejador de señales para capturar SIGINT
-    	std::signal(SIGINT, signalHandler);
-    	sf::TcpListener listener;
-	sf::TcpSocket socket;
-    	unsigned short port = PORT;
-    	establecerConexion(listener, socket, port);
-    	
-    	 FILE *fp = fopen("player2.txt", "a");
-   	 fclose(fp);
-	 std::cout << "Iniciando hilo..." << std::endl;
-	 
-	  std::thread hilo([&]() {
-        recibirMensajes(socket);
-    });   
-    
-    */
-
+	host=ser;
 	fps=60;
 	mov_wum=0;
 	mov_red=0;
@@ -81,17 +42,6 @@ juego::juego(int resolucion_x,int resolucion_y, string titulo){
 	ventana1 = new RenderWindow(VideoMode(resolucion_x,resolucion_y),titulo);
 	ventana1->setFramerateLimit(fps);
 
-
-	//connection();
-	
-	 std::ofstream archivo("status.txt");
-    if (archivo.is_open()) {
-        		// Escribir la dirección IP en el archivo
-        		archivo << "0";
-        		archivo.close();
-        		std::cout << "status actualizado" << std::endl;
-    } 
-
     cargar_texturas();
     //crear_colision_jugador();
 	llenar_cords();
@@ -104,25 +54,7 @@ juego::juego(int resolucion_x,int resolucion_y, string titulo){
 
 }
 
-// Función para establecer la conexión
-bool juego::establecerConexion(sf::TcpListener& listener, sf::TcpSocket& socket, unsigned short port) {
-    // Enlaza el listener al puerto
-    if (listener.listen(port) != sf::Socket::Done) {
-        std::cerr << "Error al enlazar el listener al puerto " << port << std::endl;
-        return false;
-    }
 
-    // Bucle para esperar una conexión
-    while (true) {
-        std::cout << "Esperando una conexión..." << std::endl;
-
-        // Acepta una conexión entrante
-        if (listener.accept(socket) == sf::Socket::Done) {
-            std::cout << "¡Conexión establecida!" << std::endl;
-            return true;
-        }
-    }
-}
 
 
 
@@ -200,29 +132,8 @@ void juego::procesar_eventos(){
         /*mov_player2();
         mov_player3();
         mov_player4();*/
-        
-        std::ifstream archivo("player.txt");
-	std::string status;
-	std::getline(archivo, status);
-	archivo.close();
-	trim(status);
-        
-        if(status == "player1"){
         mov_redit();
-        }
-        else{
-        mov_redit1();
-        }
-        if(status == "player2"){
         mov_wumpus();
-        }
-        else{
-        mov_wumpus1();
-        }
-        
-        
-        //mov_redit();
-        //mov_wumpus();
 		mov_tuxf();
 		mov_android();
 }
@@ -233,59 +144,7 @@ void juego::procesar_eventos(){
 
 void juego::gameLoop(){
 
-	
-	// Abrir el archivo "direccion.txt" en modo de lectura
-    std::ifstream archivo("direccion.txt");
-    std::string contenido;
-
-    if (archivo.is_open()) {
-        // Leer el contenido del archivo y guardarlo en la variable "contenido"
-        std::getline(archivo, contenido);
-
-        archivo.close();
-        //std::cout << "Contenido del archivo direccion.txt: " << contenido << std::endl;
-    }
-	
-	trim(contenido);
-	
-	sf::TcpSocket socket;
-    	sf::IpAddress ip(contenido); // IP de destino en la red local
-	 unsigned short port = 2000;
-	 
-	  if (socket.connect(ip, port) != sf::Socket::Done) {
-        std::cerr << "Error al conectar al servidor" << std::endl;
-    	}
-    	
-    	
-
-
-	while(ventana1->isOpen()){	
-	
-		std::string message; 
-		 if (Keyboard::isKeyPressed(Keyboard::Left))
-        	{
-             	message = "Tecla A presionada";
-        	socket.send(message.c_str(), message.size() + 1);
-        	}
-        	else if (Keyboard::isKeyPressed(Keyboard::Right))
-        	{
-           	message = "Tecla D presionada";
-        	socket.send(message.c_str(), message.size() + 1);
-        	}
-        	else if (Keyboard::isKeyPressed(Keyboard::Up))
-        	{
-            	message = "Tecla W presionada";
-        	socket.send(message.c_str(), message.size() + 1);
-        	}
-        	else if (Keyboard::isKeyPressed(Keyboard::Down))
-        	{
-             	message = "Tecla S presionada";
-        	socket.send(message.c_str(), message.size() + 1);
-        	}
-	
-	
-	
-		
+	while(ventana1->isOpen()){		
 		procesar_eventos();
 		dibujar_pantalla();
 		for(auto& coli : colisiones){

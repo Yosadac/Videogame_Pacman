@@ -4,30 +4,19 @@
 //#include <gif_lib.h>
 #include <vector>
 #include <iostream>
-#include <SFML/Network.hpp>
+#include <fstream>
+#include <string>
+//#include "obtenerIP.h"
+
 
 using namespace std;
 using namespace sf;
-
 
 class juego{
 
 	public:
 	
-		juego(int resolucion_x,int resolucion_y, string titulo);
-		void trim(std::string& str);
-		void connection();
-		void establecerConexionClient();
-		
-		//void recibirMensajes(sf::TcpSocket& socket);
-		//bool establecerConexion(sf::TcpListener& listener, sf::TcpSocket& socket, unsigned short port);
-		
-		void enviar();
-		void recibir();
-		
-		void recibirMensajes(sf::TcpSocket& socket);
-		bool establecerConexion(sf::TcpListener& listener, sf::TcpSocket& socket, unsigned short port);
-		void enviarMensajes();
+		juego(int resolucion_x,int resolucion_y, string titulo,bool ser);
 		void dibujar_pantalla();
 		void gameLoop();
 		void llenar_cords();
@@ -44,11 +33,9 @@ class juego{
 		
 		void animacion_redit();
 		void mov_redit();
-		void mov_redit1();
 		
 		void animacion_wumpus();
 		void mov_wumpus();
-		void mov_wumpus1();
 
 		void animacion_tux();
 		void mov_tuxf();
@@ -62,7 +49,10 @@ class juego{
 		
 		void winner();
 
+		void animacion_virus(Vector2f &Position);
+
 		Vector2f colision(Sprite x, RectangleShape Obs1, Vector2f spritePosition);
+	
 	private:
 	
 		RenderWindow * ventana1;
@@ -83,6 +73,10 @@ class juego{
 		
 		Sprite demo_redit1,demo_redit2, demo_redit3, demo_wumpus1, demo_wumpus2, demo_wumpus3,demo_tux1,demo_tux2,demo_tux3,demo_tux4,demo_android1,demo_android2,demo_android3,demo_android4;
 		
+		Texture virus1,virus2,virus3,virus4;
+
+		Sprite svirus1,svirus2,svirus3,svirus4,demo_virus1,demo_virus2,demo_virus3,demo_virus4;
+
 		vector<Sprite> spastillas;	
 		
 		Event event;
@@ -111,5 +105,6 @@ class juego{
 		bool confirmationRed,confirmationWum,confirmationTux,confirmationAnd;
 
 		int players_alive;
-		bool red_alive,wum_alive,tux_alive,and_alive;
+		bool red_alive,wum_alive,tux_alive,and_alive,host;
 };
+

@@ -1,68 +1,106 @@
 #include "juego.h"
 
-#include <asio.hpp>
-#include <iostream>
-#include <thread>
-//#include <sys/inotify.h>
-#include <fstream>
-
-#include <filesystem>
-#include <chrono>
-#include <thread>
-
-#include <string>
-#include <functional>
-
-#include <algorithm>
-#include <cctype>
-
-using asio::ip::tcp;
-
-using namespace sf;
-
-//std::string message;
-
-//std::string globalMessage;
-
 void juego::mov_wumpus(){
+        //leer un archivo txt
+        if(host==true){
+            ifstream archivo;
+            string texto;
+            archivo.open("player.txt",ios::in);
+            if(archivo.fail()){
+                cout<<"No se pudo abrir el archivo";
+                exit(1);
+            }
+            while(!archivo.eof()){
+                getline(archivo,texto);
+                cout<<texto<<endl;
+            }
+            archivo.close();
 
-        // Mover personaje con las teclas de flecha
-        if (Keyboard::isKeyPressed(Keyboard::Left))
-        {
-            if(aviso_wum==1 && mov_wum!=3){
-            	mov_wum=3;
-            	wumPosition.x -= 10.0;
-            	aviso_wum=0;
+            if (texto=="Tecla A presionada")
+            {
+                if(aviso_wum==1 && mov_wum!=3){
+                	mov_wum=3;
+                	wumPosition.x -= 10.0;
+                	aviso_wum=0;
+                }
+                else if(aviso_wum==0){
+                	mov_wum=3;
+                }
             }
-            else if(aviso_wum==0){
-            	mov_wum=3;
+            else if (texto=="Tecla D presionada")
+            {
+	        if(aviso_wum==1 && mov_wum!=4){	
+                	mov_wum=4;
+                	aviso_wum=0;
+                	wumPosition.x += 10.0;
+                }
+                else if(aviso_wum==0){
+                	mov_wum=4;
+                }
+            }
+            else if (texto=="Tecla W presionada")
+            {
+	        if(aviso_wum==1 && mov_wum!=1){
+                	mov_wum=1;
+                	aviso_wum=0;
+                	wumPosition.y -= 10.0;
+                }
+                else if(aviso_wum==0){
+                	mov_wum=1;
+                }
+                //aviso=0;
+            }
+            else if (texto=="Tecla S presionada")
+            {
+                if(aviso_wum==1 && mov_wum!=2){
+                	mov_wum=2;
+                	aviso_wum=0;
+                	wumPosition.y += 10.0;
+                }
+                else if(aviso_wum==0){
+                	mov_wum=2;
+                }
+                //	aviso=0;
             }
         }
-        else if (Keyboard::isKeyPressed(Keyboard::Right))
-        {
-	    if(aviso_wum==1 && mov_wum!=4){	
-            	mov_wum=4;
-            	aviso_wum=0;
-            	wumPosition.x += 10.0;
+        else{
+            // Mover personaje con las teclas de flecha
+            if (Keyboard::isKeyPressed(Keyboard::Left))
+            {
+                if(aviso_wum==1 && mov_wum!=3){
+                	mov_wum=3;
+                	wumPosition.x -= 10.0;
+                	aviso_wum=0;
+                }
+                else if(aviso_wum==0){
+                	mov_wum=3;
+                }
             }
-            else if(aviso_wum==0){
-            	mov_wum=4;
+            else if (Keyboard::isKeyPressed(Keyboard::Right))
+            {
+    	    if(aviso_wum==1 && mov_wum!=4){	
+                	mov_wum=4;
+                	aviso_wum=0;
+                	wumPosition.x += 10.0;
+                }
+                else if(aviso_wum==0){
+                	mov_wum=4;
+                }
             }
-        }
-        else if (Keyboard::isKeyPressed(Keyboard::Up))
-        {
-	    if(aviso_wum==1 && mov_wum!=1){
-            	mov_wum=1;
-            	aviso_wum=0;
-            	wumPosition.y -= 10.0;
+            else if (Keyboard::isKeyPressed(Keyboard::Up))
+            {
+    	    if(aviso_wum==1 && mov_wum!=1){
+                	mov_wum=1;
+                	aviso_wum=0;
+                	wumPosition.y -= 10.0;
+                }
+                else if(aviso_wum==0){
+                	mov_wum=1;
+                }
+                //aviso=0;
             }
-            else if(aviso_wum==0){
-            	mov_wum=1;
-            }
-            //aviso=0;
-        }
-        else if (Keyboard::isKeyPressed(Keyboard::Down))
-        {
+            else if (Keyboard::isKeyPressed(Keyboard::Down))
+            {
             if(aviso_wum==1 && mov_wum!=2){
             	mov_wum=2;
             	aviso_wum=0;
@@ -72,79 +110,7 @@ void juego::mov_wumpus(){
             	mov_wum=2;
             }
             //	aviso=0;
-        }
-        
-        
-   if(aviso_wum==0){
-        // Mover personaje con las teclas de flecha
-        if (mov_wum==3)
-        {
-            wumPosition.x -= 1.2;
-        }
-        else if (mov_wum==4 || mov_wum==0)
-        {
-            wumPosition.x += 1.2;
-        }
-        else if (mov_wum==1)
-        {
-            wumPosition.y -= 1.2;
-        }
-        else if (mov_wum==2)
-        {
-            wumPosition.y += 1.2;
-        }
-    }
-
-}
-
-void juego::mov_wumpus1(){
-
-        // Mover personaje con las teclas de flecha
-        if (Keyboard::isKeyPressed(Keyboard::A))
-        {
-            if(aviso_wum==1 && mov_wum!=3){
-            	mov_wum=3;
-            	wumPosition.x -= 10.0;
-            	aviso_wum=0;
             }
-            else if(aviso_wum==0){
-            	mov_wum=3;
-            }
-        }
-        else if (Keyboard::isKeyPressed(Keyboard::D))
-        {
-	    if(aviso_wum==1 && mov_wum!=4){	
-            	mov_wum=4;
-            	aviso_wum=0;
-            	wumPosition.x += 10.0;
-            }
-            else if(aviso_wum==0){
-            	mov_wum=4;
-            }
-        }
-        else if (Keyboard::isKeyPressed(Keyboard::W))
-        {
-	    if(aviso_wum==1 && mov_wum!=1){
-            	mov_wum=1;
-            	aviso_wum=0;
-            	wumPosition.y -= 10.0;
-            }
-            else if(aviso_wum==0){
-            	mov_wum=1;
-            }
-            //aviso=0;
-        }
-        else if (Keyboard::isKeyPressed(Keyboard::S))
-        {
-            if(aviso_wum==1 && mov_wum!=2){
-            	mov_wum=2;
-            	aviso_wum=0;
-            	wumPosition.y += 10.0;
-            }
-            else if(aviso_wum==0){
-            	mov_wum=2;
-            }
-            //	aviso=0;
         }
         
         
