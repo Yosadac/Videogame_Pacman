@@ -16,7 +16,7 @@ class juego{
 
 	public:
 	
-		juego(int resolucion_x,int resolucion_y, string titulo);
+		juego(int resolucion_x,int resolucion_y, string titulo,bool ser);
 		void dibujar_pantalla();
 		void gameLoop();
 		void llenar_cords();
@@ -105,6 +105,6 @@ class juego{
 		bool confirmationRed,confirmationWum,confirmationTux,confirmationAnd;
 
 		int players_alive;
-		bool red_alive,wum_alive,tux_alive,and_alive;
+		bool red_alive,wum_alive,tux_alive,and_alive,host;
 };
 

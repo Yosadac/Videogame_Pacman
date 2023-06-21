@@ -3,56 +3,125 @@
 
 void juego::mov_redit(){
 
-    // Mover personaje con las teclas de flecha
-    if (Keyboard::isKeyPressed(Keyboard::Left))
-    {
-        //spacman.move(-1, 0);
-        //spritePosition.x -= 1.2;
-        if(aviso_red==1 && mov_red!=3){
-           	mov_red=3;
-           	redPosition.x -= 10.0;
-           	aviso_red=0;
-        }
-        else if(aviso_red==0){
-           	mov_red=3;
-        }
-        //aviso=0;
-    }
-    else if (Keyboard::isKeyPressed(Keyboard::Right))
-    {
-	    if(aviso_red==1 && mov_red!=4){	
-         	mov_red=4;
-           	aviso_red=0;
-           	redPosition.x += 10.0;
-        }
-        else if(aviso_red==0){
-          	mov_red=4;
-        }
+    if(host==true){
+        // Mover personaje con las teclas de flecha
+        if (Keyboard::isKeyPressed(Keyboard::Left))
+        {
+            //spacman.move(-1, 0);
+            //spritePosition.x -= 1.2;
+            if(aviso_red==1 && mov_red!=3){
+               	mov_red=3;
+               	redPosition.x -= 10.0;
+           	    aviso_red=0;
+            }
+            else if(aviso_red==0){
+               	mov_red=3;
+            }
             //aviso=0;
+        }   
+        else if (Keyboard::isKeyPressed(Keyboard::Right))
+        {
+	        if(aviso_red==1 && mov_red!=4){	
+             	mov_red=4;
+           	    aviso_red=0;
+               	redPosition.x += 10.0;
+            }
+            else if(aviso_red==0){
+              	mov_red=4;
+            }
+                //aviso=0;
+        }
+        else if (Keyboard::isKeyPressed(Keyboard::Up))
+        {
+	        if(aviso_red==1 && mov_red!=1){
+              	mov_red=1;
+               	aviso_red=0;
+               	redPosition.y -= 10.0;
+            }
+            else if(aviso_red==0){
+              	mov_red=1;
+            }
+                //aviso=0;
+        }
+        else if (Keyboard::isKeyPressed(Keyboard::Down))
+        {
+            if(aviso_red==1 && mov_red!=2){
+              	mov_red=2;
+           	    aviso_red=0;
+               	redPosition.y += 10.0;
+            }
+            else if(aviso_red==0){
+              	mov_red=2;
+            }
+               //	aviso=0;
+        }
     }
-    else if (Keyboard::isKeyPressed(Keyboard::Up))
+    else
     {
-	    if(aviso_red==1 && mov_red!=1){
-          	mov_red=1;
-           	aviso_red=0;
-           	redPosition.y -= 10.0;
+        ifstream archivo;
+        string texto;
+        archivo.open("Host.txt",ios::in);
+        if(archivo.fail()){
+            cout<<"No se pudo abrir el archivo";
+            exit(1);
         }
-        else if(aviso_red==0){
-          	mov_red=1;
+        while(!archivo.eof()){
+            getline(archivo,texto);
+            cout<<texto<<endl;
         }
+        archivo.close();
+
+        // Mover personaje con las teclas de flecha
+        if (texto=="Tecla A presionada")
+        {
+            //spacman.move(-1, 0);
+            //spritePosition.x -= 1.2;
+            if(aviso_red==1 && mov_red!=3){
+               	mov_red=3;
+               	redPosition.x -= 10.0;
+           	    aviso_red=0;
+            }
+            else if(aviso_red==0){
+               	mov_red=3;
+            }
             //aviso=0;
-    }
-    else if (Keyboard::isKeyPressed(Keyboard::Down))
-    {
-        if(aviso_red==1 && mov_red!=2){
-          	mov_red=2;
-           	aviso_red=0;
-           	redPosition.y += 10.0;
+        }   
+        else if (texto=="Tecla D presionada")
+        {
+	        if(aviso_red==1 && mov_red!=4){	
+             	mov_red=4;
+           	    aviso_red=0;
+               	redPosition.x += 10.0;
+            }
+            else if(aviso_red==0){
+              	mov_red=4;
+            }
+                //aviso=0;
         }
-        else if(aviso_red==0){
-          	mov_red=2;
+        else if (texto=="Tecla W presionada")
+        {
+	        if(aviso_red==1 && mov_red!=1){
+              	mov_red=1;
+               	aviso_red=0;
+               	redPosition.y -= 10.0;
+            }
+            else if(aviso_red==0){
+              	mov_red=1;
+            }
+                //aviso=0;
         }
-           //	aviso=0;
+        else if (texto=="Tecla S presionada")
+        {
+            if(aviso_red==1 && mov_red!=2){
+              	mov_red=2;
+           	    aviso_red=0;
+               	redPosition.y += 10.0;
+            }
+            else if(aviso_red==0){
+              	mov_red=2;
+            }
+               //	aviso=0;
+        }
     }
         
         

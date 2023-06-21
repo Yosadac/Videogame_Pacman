@@ -16,7 +16,7 @@ int main(int argc, char* args[]) {
         host=false;
 		jugar=mostrarMenu(jugar);
 	    if(jugar==1){
-			juego* partida1 = new juego(1000, 1000, "Bite The Bytes");
+			juego* partida1 = new juego(1000, 1000, "Bite The Bytes",server);
 		}	
 	}while(jugar==1);
 

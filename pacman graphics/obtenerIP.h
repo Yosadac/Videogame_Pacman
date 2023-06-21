@@ -40,6 +40,14 @@ void receiveMessagesHost(sf::TcpSocket* client) {
         sf::Packet packet;
         if (client->receive(packet) == sf::Socket::Done) {
             std::cout << "Cliente " << client->getRemoteAddress() << " recibió: " << messageH << std::endl;
+            //crear un nuevo archivo txt y abrirlo y escribir
+            std::ofstream player("player.txt");
+            if (player.is_open()) {
+                player << messageH;
+                player.close();
+            } else {
+                std::cout << "No se pudo abrir el archivo txt." << std::endl;
+            }
         } else {
             std::cout << "No se pudo abrir el archivo." << std::endl;
         }
@@ -172,6 +180,13 @@ void receiveMessages(sf::TcpSocket& socket) {
         if (socket.receive(packet) == sf::Socket::Done) {
             packet >> messageC;
             cout<<messageC<<endl;
+            std::ofstream player("Host.txt");
+            if (player.is_open()) {
+                player << messageC;
+                player.close();
+            } else {
+                std::cout << "No se pudo abrir el archivo txt." << std::endl;
+            }
             if(messageC=="Enter"){
                 partida_iniciada=true;
             }  

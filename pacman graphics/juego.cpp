@@ -4,8 +4,9 @@
 
 
 
-juego::juego(int resolucion_x,int resolucion_y, string titulo){
+juego::juego(int resolucion_x,int resolucion_y, string titulo, bool ser){
 
+	host=ser;
 	fps=60;
 	mov_wum=0;
 	mov_red=0;
