@@ -107,3 +107,4 @@ class juego{
 		int players_alive;
 		bool red_alive,wum_alive,tux_alive,and_alive;
 };
+

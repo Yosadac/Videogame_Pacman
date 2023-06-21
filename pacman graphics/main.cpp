@@ -82,14 +82,6 @@ int mostrarMenu(int vuelta) {
                         // Lógica para la opción "Jugar"
                         //system("/home/kali/Desktop/nuevo2/./iniciar_juego.sh");
                         std::cout << "Creando Partida..." << std::endl;
-                        std::ofstream archivo("player.txt");
-                        if (archivo.is_open()) {
-                            std::string texto="HOST";
-                            archivo << texto;
-                            archivo.close();
-                        } else {
-                            std::cout << "No se pudo abrir el archivo." << std::endl;
-                        }
                         hostIP();
                         //host=true;
                         
@@ -103,18 +95,13 @@ int mostrarMenu(int vuelta) {
                     {
                         // Lógica para la opción "Unirse a Partida"
                         std::cout << "Accediendo a una partida..." << std::endl;
-                        std::ofstream archivo("player.txt");
-                        if (archivo.is_open()) {
-                            std::string texto="PLAYER";
-                            archivo << texto;
-                            archivo.close();
-                        } else {
-                            std::cout << "No se pudo abrir el archivo." << std::endl;
-                        }
                         obtenerIP(ipAddress);
                         std::cout << "Dirección IP: " << ipAddress << std::endl;
                         cliente(ipAddress);
-                        window.close();
+                        if(partida_inicida==true){
+                            window.close();
+                        }
+                        //window.close();
                     }
 
                     else if (selectedOption == 2)
